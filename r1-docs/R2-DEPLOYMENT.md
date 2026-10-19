@@ -69,8 +69,12 @@ With the feature disabled, five complete transmissions were captured:
 
 The terminal loud segment is **280 - 480 ms, mean 316 ms**, and its pitch
 periodicity is lower than mid speech, so it is receiver noise and not speech.
-200 ms therefore left a clearly audible residual, and at the operator request
-`SquelchTailElimMs` was raised to **400 ms**.
+200 ms therefore left an audible residual.
+
+`SquelchTailElimMs` was raised to **400 ms** and verified, but the operator
+then chose to go back to **200 ms** for a longer observation period before
+deciding on a permanent value. The measurements and the 400 ms verification
+below are kept so that the decision can be made later with the data at hand.
 
 The deployed R2 binary was then verified against the measured tail lengths with
 the offline harness:
@@ -87,6 +91,7 @@ A 400 ms delay removes the whole tail for the 280 ms case, leaves 80 ms for the
 
 ## Current state
 
-Service active, `SquelchTailElim=1`, `SquelchTailElimMs=400`, USRP socket
-`127.0.0.1:34102` bound, AGC proxy untouched on `127.0.0.1:32002`, root
-filesystem back to read only.
+Service active, `SquelchTailElim=1`, **`SquelchTailElimMs=200`** (400 ms was
+tried and reverted for long term observation), USRP socket `127.0.0.1:34102`
+bound, AGC proxy untouched on `127.0.0.1:32002`, root filesystem back to read
+only.
