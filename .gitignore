@@ -17,3 +17,6 @@ RemoteCommand
 .vs
 *.ambe
 GitVersion.h
+
+# R1 tail elimination debug artefacts
+MMDVMHost.debug

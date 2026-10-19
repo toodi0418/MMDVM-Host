@@ -1,5 +1,7 @@
 # This makefile is for all platforms, but doesn't include support for the HD44780, OLED, or PCF8574 displays on the Raspberry Pi.
 
+
+
 CC      = cc
 CXX     = c++
 CFLAGS  = -g -O3 -Wall -std=c++0x -pthread -DHAVE_LOG_H -I/usr/local/include
@@ -16,6 +18,17 @@ OBJECTS = \
 		NXDNUDCH.o P25Audio.o P25Control.o P25Data.o P25LowSpeedData.o P25Network.o P25NID.o P25Trellis.o P25Utils.o PseudoTTYController.o POCSAGControl.o \
 		POCSAGNetwork.o QR1676.o RemoteControl.o RS129.o RS241213.o RSSIInterpolator.o SerialPort.o SMeter.o StopWatch.o Sync.o SHA256.o TFTSurenoo.o Thread.o \
 		Timer.o UARTController.o UDPController.o UDPSocket.o UserDB.o UserDBentry.o Utils.o YSFControl.o YSFConvolution.o YSFFICH.o YSFNetwork.o YSFPayload.o
+
+# R1 build option. Build with "make OLED=1" to enable the OLED display support
+# the Pi-Star image uses. This is not only about the display: MMDVMHost.cpp
+# drops root privileges to the mmdvm user in daemon mode when HD44780, OLED and
+# _OPENWRT are all undefined, and Pi-Star keeps /var/log/pi-star root owned, so
+# a build without OLED cannot open its log file and exits at start up.
+ifdef OLED
+CFLAGS  += -DOLED
+LIBS    += -lArduiPi_OLED -lwiringPi
+OBJECTS += OLED.o
+endif
 
 all:		MMDVMHost RemoteCommand
 

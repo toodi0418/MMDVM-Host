@@ -153,12 +153,12 @@ dpkg-deb -x libsamplerate0-dev_*_armhf.deb devpkg
 
 git clone --branch r1-fm-tail-elim https://github.com/toodi0418/MMDVM-Host.git src
 cd src
-make -j2 \
-  CFLAGS="-g -O3 -Wall -std=c++0x -pthread -DHAVE_LOG_H -I/usr/local/include -I$HOME/r1-tail-elim/devpkg/usr/include" \
-  LDFLAGS="-g -L/usr/local/lib -L$HOME/r1-tail-elim/devpkg/usr/lib/arm-linux-gnueabihf"
+export CPLUS_INCLUDE_PATH=$HOME/r1-tail-elim/devpkg/usr/include
+export LIBRARY_PATH=$HOME/r1-tail-elim/devpkg/usr/lib/arm-linux-gnueabihf
+make -j2 OLED=1
 
-strip MMDVMHost          # optional, the shipped binary is stripped
-./MMDVMHost --version    # MMDVMHost version 20240207 git #<commit>
+strip --strip-unneeded MMDVMHost   # the shipped binary is stripped
+./MMDVMHost --version              # MMDVMHost version 20240207 git #<commit>
 ```
 
 Notes:
@@ -177,6 +177,25 @@ Notes:
   that Pi-Star ships, and it removes the runtime dependency. The USRP path does
   not call the resampler at all, it is only used by the RAW FM protocol.
 
+
+> **`OLED=1` is required, and it is not about the display.** With HD44780, OLED
+> and _OPENWRT all undefined, MMDVMHost.cpp (the
+> `#if !defined(HD44780) && !defined(OLED) && !defined(_OPENWRT)` block) drops
+> root privileges to the mmdvm user when running as a daemon. The Pi-Star log
+> file /var/log/pi-star/MMDVM-<date>.log is root:root 0644, so such a build
+> cannot open its log file and exits immediately with
+> "MMDVMHost: unable to open the log file". The Pi-Star binary is built with
+> -DOLED, which compiles the privilege drop out and keeps root.
+>
+> `make OLED=1` uses the small optional block added to the Makefile. It appends
+> `-DOLED`, `-lArduiPi_OLED -lwiringPi` and `OLED.o` (the upstream generic
+> Makefile does not build the display objects at all, so without this the link
+> fails with an undefined COLED constructor). The samplerate header and the
+> `-lsamplerate` search path come from the two exported environment variables,
+> which keeps the Makefile itself unchanged apart from that one block.
+>
+> This was found during the first R1 deployment attempt and is the reason that
+> deployment was rolled back automatically.
 ---
 
 ## 5. Deployment on R1
