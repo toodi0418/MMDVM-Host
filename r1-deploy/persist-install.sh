@@ -34,15 +34,16 @@ HOOK
 chmod 755 /usr/local/bin/.git/hooks/post-merge
 
 # A cron entry re-checks the binary every 10 minutes. The systemd timer in
-# this directory is kept for reference but cannot be used on R1: the box only
-# has about 16 MB free on /run, less than the systemd daemon-reload safety
-# buffer, so any attempt to load a new unit fails.
-cat > /etc/cron.d/r1-tail-elim <<"CRON"
-# Re-install the R1 squelch tail elimination MMDVMHost binary if anything
+# this directory is kept for reference but cannot be used: the boxes only have
+# about 16 MB free on /run, less than the systemd daemon-reload safety buffer,
+# so any attempt to load a new unit fails.
+CRON_NAME=$(basename "$STORE")
+cat > "/etc/cron.d/$CRON_NAME" <<"CRON"
+# Re-install the squelch tail elimination MMDVMHost binary if anything
 # replaced it. Runs every 10 minutes, does nothing when the hash matches.
 */10 * * * * root $STORE/restore-binary.sh >/dev/null 2>&1
 CRON
-chmod 644 /etc/cron.d/r1-tail-elim
+chmod 644 "/etc/cron.d/$CRON_NAME"
 
 mount -o remount,ro /
 
