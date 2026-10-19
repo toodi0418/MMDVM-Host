@@ -7,7 +7,9 @@ AllStarLink hub.
 
 * Base upstream commit: `218a017956b174334a2fe0418e373ba139768f5f` (2024-02-09)
 * Development branch: `r1-fm-tail-elim`
-* Target platform: Raspberry Pi 3 Model B, Raspbian 11 (armv7l), Pi-Star 4.2.3
+* Target platforms: R1, Raspberry Pi 3 Model B, Raspbian 11 (armv7l), Pi-Star 4.2.3;
+  R2, Raspberry Pi 4, Raspbian 10 (buster, glibc 2.28), Pi-Star 4.1.6, built
+  separately on the target, see r1-docs/R2-DEPLOYMENT.md
 
 Everything described here only touches the **FM RF to USRP uplink**. The USRP
 to RF downlink, the USRP packet format, DMR, D-Star, YSF, P25, NXDN, M17,
