@@ -279,6 +279,25 @@ the custom binary in place with minimal intrusion:
   a successful `git pull`, so the custom binary is back before Pi-Star starts
   the service again at the end of the daily run.
 * `/etc/cron.d/r1-tail-elim` runs the script every 10 minutes as a catch-all.
+
+### What was actually tested
+
+A local experiment with git 2.30.2, the version on R1, using two throw away
+repositories, confirms the behaviour above and rules out one tempting fix:
+
+* without any index flag, `git pull` aborts with
+  `error: Your local changes to the following files would be overwritten by
+  merge` and the repository does not advance, so the other binaries in the
+  repository are not updated either;
+* marking the file with `git update-index --skip-worktree` does **not** change
+  that. The pull still aborts with the same error and the repository still does
+  not advance.
+
+`skip-worktree` is therefore deliberately not used: it would add index state to
+the Pi-Star repository without changing the outcome. The custom binary survives
+in both cases, which is what matters for the feature, and the post-merge hook
+plus the cron entry cover every other way the file can be replaced (manual
+checkout, apt reinstall, image upgrade).
   The systemd timer in `r1-deploy` is kept for reference but cannot be loaded
   on R1: only about 16 MB is free on `/run`, below the systemd daemon-reload
   safety buffer, so `systemctl daemon-reload` is refused.
