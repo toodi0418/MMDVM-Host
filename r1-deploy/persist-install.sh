@@ -38,7 +38,9 @@ chmod 755 /usr/local/bin/.git/hooks/post-merge
 # about 16 MB free on /run, less than the systemd daemon-reload safety buffer,
 # so any attempt to load a new unit fails.
 CRON_NAME=$(basename "$STORE")
-cat > "/etc/cron.d/$CRON_NAME" <<"CRON"
+# The heredoc is deliberately unquoted so that $STORE is expanded here; cron
+# runs the line with /bin/sh and would leave a literal $STORE unresolved.
+cat > "/etc/cron.d/$CRON_NAME" <<CRON
 # Re-install the squelch tail elimination MMDVMHost binary if anything
 # replaced it. Runs every 10 minutes, does nothing when the hash matches.
 */10 * * * * root $STORE/restore-binary.sh >/dev/null 2>&1
