@@ -1,0 +1,7 @@
+[Unit]
+Description=Verify the R1 squelch tail elimination MMDVMHost binary
+After=mmdvmhost.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/etc/r1-tail-elim/restore-binary.sh

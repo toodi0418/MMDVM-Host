@@ -17,8 +17,10 @@
  */
 
 #include "FMControl.h"
+#include "Log.h"
 
 #include <string>
+#include <cstring>
 
 #if defined(DUMP_RF_AUDIO)
 #include <cstdio>
@@ -31,7 +33,7 @@ const float        PREEMPHASIS_GAIN_DB = 0.0F;  // Audio gain  adjustment
 const float        FILTER_GAIN_DB      = 2.0F;  // Audio gain  adjustment
 const unsigned int FM_MASK             = 0x00000FFFU;
 
-CFMControl::CFMControl(CFMNetwork* network, float txAudioGain, float rxAudioGain, bool preEmphasisOn, bool deEmphasisOn) :
+CFMControl::CFMControl(CFMNetwork* network, float txAudioGain, float rxAudioGain, bool preEmphasisOn, bool deEmphasisOn, bool tailElimEnabled, unsigned int tailElimMs) :
 m_network(network),
 m_txAudioGain(txAudioGain),
 m_rxAudioGain(rxAudioGain),
@@ -43,7 +45,18 @@ m_preEmphasis(NULL),
 m_deEmphasis(NULL),
 m_filterStage1(NULL),
 m_filterStage2(NULL),
-m_filterStage3(NULL)
+m_filterStage3(NULL),
+m_tailElimEnabled(tailElimEnabled),
+m_tailElimMs(tailElimMs),
+m_delaySamples(0U),
+m_delayCapacity(0U),
+m_delayLine(NULL),
+m_delayHead(0U),
+m_delayTail(0U),
+m_delayCount(0U),
+m_delayPrimed(false),
+m_idleMs(0U),
+m_delayFaultLogged(false)
 {
     assert(txAudioGain > 0.0F);
     assert(rxAudioGain > 0.0F);
@@ -55,6 +68,19 @@ m_filterStage3(NULL)
     m_filterStage1 = new CIIRDirectForm1Filter(0.29495028f, 0.0f, -0.29495028f, 1.0f, -0.61384624f, -0.057158668f, FILTER_GAIN_DB);
     m_filterStage2 = new CIIRDirectForm1Filter(1.0f, 2.0f, 1.0f, 1.0f, 0.9946123f, 0.6050482f, FILTER_GAIN_DB);
     m_filterStage3 = new CIIRDirectForm1Filter(1.0f, -2.0f, 1.0f, 1.0f, -1.8414584f, 0.8804949f, FILTER_GAIN_DB);
+
+    // Squelch tail elimination is opt in, a delay of zero samples is a no-op.
+    if (m_tailElimEnabled) {
+        if (m_tailElimMs < FM_TAIL_ELIM_MIN_MS || m_tailElimMs > FM_TAIL_ELIM_MAX_MS) {
+            LogWarning("Squelch tail elimination delay of %ums is out of range, disabling", m_tailElimMs);
+            m_tailElimEnabled = false;
+        } else {
+            m_delaySamples  = (m_tailElimMs * FM_TAIL_ELIM_RATE) / 1000U;
+            m_delayCapacity = m_delaySamples + FM_TAIL_ELIM_MAX_FRAME + 8U;
+            m_delayLine     = new float[m_delayCapacity];
+            ::memset(m_delayLine, 0x00U, m_delayCapacity * sizeof(float));
+        }
+    }
 }
 
 CFMControl::~CFMControl()
@@ -65,6 +91,69 @@ CFMControl::~CFMControl()
     delete m_filterStage1;
     delete m_filterStage2;
     delete m_filterStage3;
+
+    delete[] m_delayLine;
+}
+
+void CFMControl::resetDelayLine()
+{
+    m_delayHead   = 0U;
+    m_delayTail   = 0U;
+    m_delayCount  = 0U;
+    m_delayPrimed = false;
+}
+
+bool CFMControl::primeDelayLine()
+{
+    if (m_delayPrimed)
+        return true;
+
+    if (m_delayLine == NULL || m_delaySamples == 0U || m_delaySamples > m_delayCapacity)
+        return false;
+
+    // Start every transmission with the delay line full of silence so that the
+    // network packet cadence is unchanged and nothing is ever sent in a burst.
+    for (unsigned int i = 0U; i < m_delaySamples; i++) {
+        m_delayLine[m_delayTail] = 0.0F;
+        m_delayTail = (m_delayTail + 1U) % m_delayCapacity;
+    }
+
+    m_delayCount  = m_delaySamples;
+    m_delayPrimed = true;
+
+    return true;
+}
+
+bool CFMControl::applyDelay(const float* in, unsigned int nIn, float* out, unsigned int& nOut)
+{
+    nOut = 0U;
+
+    if (!m_tailElimEnabled || m_delayLine == NULL || m_delaySamples == 0U)
+        return false;
+
+    if (nIn == 0U || nIn > FM_TAIL_ELIM_MAX_FRAME)
+        return false;
+
+    if (!primeDelayLine())
+        return false;
+
+    if ((m_delayCount + nIn) > m_delayCapacity)
+        return false;
+
+    for (unsigned int i = 0U; i < nIn; i++) {
+        m_delayLine[m_delayTail] = in[i];
+        m_delayTail = (m_delayTail + 1U) % m_delayCapacity;
+    }
+
+    m_delayCount += nIn;
+
+    while (nOut < nIn) {
+        out[nOut++] = m_delayLine[m_delayHead];
+        m_delayHead = (m_delayHead + 1U) % m_delayCapacity;
+        m_delayCount--;
+    }
+
+    return true;
 }
 
 bool CFMControl::writeModem(const unsigned char* data, unsigned int length)
@@ -78,11 +167,25 @@ bool CFMControl::writeModem(const unsigned char* data, unsigned int length)
     if (data[0U] == TAG_HEADER)
         return true;
 
-    if (data[0U] == TAG_EOT)
+    if (data[0U] == TAG_EOT) {
+        // End of the RF transmission, throw away the audio still in the delay
+        // line so the squelch tail never reaches the network.
+        if (m_tailElimEnabled)
+            resetDelayLine();
+
+        m_idleMs = 0U;
+
         return m_network->writeEnd();
+    }
 
     if (data[0U] != TAG_DATA)
         return false;
+
+    // A long gap without audio means a new transmission even if we missed the EOT
+    if (m_idleMs >= FM_TAIL_ELIM_GAP_MS)
+        resetDelayLine();
+
+    m_idleMs = 0U;
 
     m_incomingRFAudio.addData(data + 1U, length - 1U);
     unsigned int bufferLength = m_incomingRFAudio.dataSize();
@@ -91,7 +194,7 @@ bool CFMControl::writeModem(const unsigned char* data, unsigned int length)
 
     if (bufferLength >= 3U) {
         bufferLength = bufferLength - bufferLength % 3U;    // Round down to nearest multiple of 3
-        unsigned char bufferData[240U];                     // 160 samples 12-bit       
+        unsigned char bufferData[240U];                     // 160 samples 12-bit
         m_incomingRFAudio.getData(bufferData, bufferLength);
 
         unsigned int pack = 0U;
@@ -107,7 +210,7 @@ bool CFMControl::writeModem(const unsigned char* data, unsigned int length)
             packPointer[2U] = bufferData[i + 2U];
 
             unpackedSamples[1U] = short(int(pack & FM_MASK) - 2048);
-            unpackedSamples[0U] = short(int(pack >> 12 & FM_MASK) - 2048); // 
+            unpackedSamples[0U] = short(int(pack >> 12 & FM_MASK) - 2048); //
 
             // Process unpacked sample pair
             for (unsigned char j = 0U; j < 2U; j++) {
@@ -129,6 +232,21 @@ bool CFMControl::writeModem(const unsigned char* data, unsigned int length)
             fclose(audiofile);
         }
 #endif
+
+        if (m_tailElimEnabled) {
+            float delayed[FM_TAIL_ELIM_MAX_FRAME];
+            unsigned int nDelayed = 0U;
+
+            if (applyDelay(out, nOut, delayed, nDelayed))
+                return m_network->writeData(delayed, nDelayed);
+
+            // The delay line should never fail, but never drop audio if it does
+            if (!m_delayFaultLogged) {
+                LogWarning("Squelch tail elimination delay line failed, passing RF audio through");
+                m_delayFaultLogged = true;
+            }
+        }
+
         return m_network->writeData(out, nOut);
     }
 
@@ -183,10 +301,17 @@ unsigned int CFMControl::readModem(unsigned char* data, unsigned int space)
 
 void CFMControl::clock(unsigned int ms)
 {
-    // May not be needed
+    if (m_idleMs < 10000U)
+        m_idleMs += ms;
 }
 
 void CFMControl::enable(bool enabled)
 {
-    // May not be needed
+    // Only clear the delay line when FM mode is left. Clearing it when FM mode
+    // is entered would throw away the first frame of a transmission that was
+    // already primed and queued by writeModem().
+    if (!enabled) {
+        resetDelayLine();
+        m_idleMs = 0U;
+    }
 }

@@ -315,6 +315,8 @@ public:
   float        getFMRXAudioGain() const;
   unsigned int getFMNetworkModeHang() const;
   bool         getFMNetworkDebug() const;
+  bool         getFMNetworkSquelchTailElim() const;
+  unsigned int getFMNetworkSquelchTailElimMs() const;
 
   // The AX.25 Network section
   bool         getAX25NetworkEnabled() const;
@@ -635,6 +637,9 @@ private:
   float        m_fmRXAudioGain;
   unsigned int m_fmNetworkModeHang;
   bool         m_fmNetworkDebug;
+
+  bool         m_fmNetworkSquelchTailElim;
+  unsigned int m_fmNetworkSquelchTailElimMs;
 
   bool         m_ax25NetworkEnabled;
   std::string  m_ax25NetworkPort;

@@ -174,6 +174,8 @@ m_nxdnNetModeHang(3U),
 m_m17NetModeHang(3U),
 m_pocsagNetModeHang(3U),
 m_fmNetModeHang(3U),
+m_fmTailElimEnabled(false),
+m_fmTailElimMs(0U),
 m_modeTimer(1000U),
 m_dmrTXTimer(1000U),
 m_cwIdTimer(1000U),
@@ -746,7 +748,7 @@ int CMMDVMHost::run()
 		float rxAudioGain = m_conf.getFMRXAudioGain();
 		m_fmRFModeHang    = m_conf.getFMModeHang();
 
-		m_fm = new CFMControl(m_fmNetwork, txAudioGain, rxAudioGain, preEmphasis, deEmphasis);
+		m_fm = new CFMControl(m_fmNetwork, txAudioGain, rxAudioGain, preEmphasis, deEmphasis, m_fmTailElimEnabled, m_fmTailElimMs);
 	}
 
 	bool remoteControlEnabled = m_conf.getRemoteControlEnabled();
@@ -1899,6 +1901,21 @@ bool CMMDVMHost::createFMNetwork()
 	m_fmNetModeHang            = m_conf.getFMNetworkModeHang();
 	bool debug                 = m_conf.getFMNetworkDebug();
 
+	// Squelch tail elimination (R1 customisation). Validate here so that the operator
+	// always sees the value that is actually in use in the startup log.
+	m_fmTailElimEnabled = m_conf.getFMNetworkSquelchTailElim();
+	m_fmTailElimMs      = m_conf.getFMNetworkSquelchTailElimMs();
+
+	if (m_fmTailElimEnabled) {
+		if (m_fmTailElimMs < FM_TAIL_ELIM_MIN_MS) {
+			LogWarning("SquelchTailElimMs=%u is below the minimum of %ums, using the minimum", m_fmTailElimMs, FM_TAIL_ELIM_MIN_MS);
+			m_fmTailElimMs = FM_TAIL_ELIM_MIN_MS;
+		} else if (m_fmTailElimMs > FM_TAIL_ELIM_MAX_MS) {
+			LogWarning("SquelchTailElimMs=%u is above the maximum of %ums, using the maximum", m_fmTailElimMs, FM_TAIL_ELIM_MAX_MS);
+			m_fmTailElimMs = FM_TAIL_ELIM_MAX_MS;
+		}
+	}
+
 	LogInfo("FM Network Parameters");
 	LogInfo("    Protocol: %s", protocol.c_str());
 	if (protocol == "RAW") {
@@ -1914,6 +1931,9 @@ bool CMMDVMHost::createFMNetwork()
 	LogInfo("    TX Audio Gain: %.2f", txAudioGain);
 	LogInfo("    RX Audio Gain: %.2f", rxAudioGain);
 	LogInfo("    Mode Hang: %us", m_fmNetModeHang);
+	LogInfo("    Squelch Tail Elim: %s", m_fmTailElimEnabled ? "yes" : "no");
+	if (m_fmTailElimEnabled)
+		LogInfo("    Squelch Tail Elim Delay: %ums", m_fmTailElimMs);
 
 	m_fmNetwork = new CFMNetwork(callsign, protocol, localAddress, localPort, gatewayAddress, gatewayPort, sampleRate, squelchFile, debug);
 

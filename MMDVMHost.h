@@ -97,6 +97,8 @@ private:
   unsigned int    m_m17NetModeHang;
   unsigned int    m_pocsagNetModeHang;
   unsigned int    m_fmNetModeHang;
+  bool            m_fmTailElimEnabled;
+  unsigned int    m_fmTailElimMs;
   CTimer          m_modeTimer;
   CTimer          m_dmrTXTimer;
   CTimer          m_cwIdTimer;

@@ -302,6 +302,8 @@ m_fmTXAudioGain(1.0F),
 m_fmRXAudioGain(1.0F),
 m_fmNetworkModeHang(3U),
 m_fmNetworkDebug(false),
+m_fmNetworkSquelchTailElim(false),
+m_fmNetworkSquelchTailElimMs(200U),
 m_ax25NetworkEnabled(false),
 m_ax25NetworkPort(),
 m_ax25NetworkSpeed(9600U),
@@ -1060,6 +1062,10 @@ bool CConf::read()
 				m_fmNetworkModeHang = (unsigned int)::atoi(value);
 			else if (::strcmp(key, "Debug") == 0)
 				m_fmNetworkDebug = ::atoi(value) == 1;
+			else if (::strcmp(key, "SquelchTailElim") == 0)
+				m_fmNetworkSquelchTailElim = ::atoi(value) == 1;
+			else if (::strcmp(key, "SquelchTailElimMs") == 0)
+				m_fmNetworkSquelchTailElimMs = (unsigned int)::atoi(value);
 		} else if (section == SECTION_AX25_NETWORK) {
 			if (::strcmp(key, "Enable") == 0)
 				m_ax25NetworkEnabled = ::atoi(value) == 1;
@@ -2340,6 +2346,16 @@ unsigned int CConf::getFMNetworkModeHang() const
 bool CConf::getFMNetworkDebug() const
 {
 	return m_fmNetworkDebug;
+}
+
+bool CConf::getFMNetworkSquelchTailElim() const
+{
+	return m_fmNetworkSquelchTailElim;
+}
+
+unsigned int CConf::getFMNetworkSquelchTailElimMs() const
+{
+	return m_fmNetworkSquelchTailElimMs;
 }
 
 bool CConf::getAX25NetworkEnabled() const

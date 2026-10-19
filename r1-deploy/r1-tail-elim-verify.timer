@@ -1,0 +1,9 @@
+[Unit]
+Description=Periodically verify the R1 squelch tail elimination MMDVMHost binary
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timers.target
