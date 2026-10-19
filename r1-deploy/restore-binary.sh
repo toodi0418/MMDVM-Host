@@ -4,7 +4,7 @@
 # (Pi-Star daily update, git checkout, apt, image upgrade) has replaced it.
 # It never restarts mmdvmhost on its own.
 
-STORE=/usr/local/etc/r1-tail-elim
+STORE=${STORE:-/usr/local/etc/r1-tail-elim}
 TARGET=/usr/local/bin/MMDVMHost
 STASHA=$STORE/MMDVMHost.sha256
 LOG=/var/log/r1-tail-elim.log

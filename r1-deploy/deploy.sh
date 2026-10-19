@@ -14,6 +14,7 @@ INI=/etc/mmdvmhost
 AUDITLOG=/var/log/r1-tail-elim.log
 TODAY=$(date -u +%F)
 MMDVM_LOG=/var/log/pi-star/MMDVM-$TODAY.log
+USRP_PORT=$(awk "/^\[FM Network\]/{f=1} f&&/^LocalPort=/{print \$2; exit}" "$INI" 2>/dev/null)
 
 say() { echo "[deploy] $*"; echo "$(date -Is) deploy: $*" >> "$AUDITLOG" 2>/dev/null; }
 
@@ -27,6 +28,7 @@ fail() {
 [ -f "$BINARY" ] || fail "binary $BINARY is missing"
 [ -f "$BACKUP/MMDVMHost.orig" ] || fail "no backup in $BACKUP"
 [ -f "$BACKUP/mmdvmhost.ini.orig" ] || fail "no ini backup in $BACKUP"
+[ -n "$USRP_PORT" ] || fail "cannot read the FM Network LocalPort from $INI"
 
 say "installing $BINARY"
 mount -o remount,rw / || fail "cannot remount / read write"
@@ -55,7 +57,7 @@ systemctl is-active --quiet mmdvmhost || fail "mmdvmhost is not active after res
 
 grep -q "Squelch Tail Elim: yes" "$MMDVM_LOG" || fail "tail elimination not enabled in the log"
 grep -q "Squelch Tail Elim Delay: 200ms" "$MMDVM_LOG" || fail "delay not reported in the log"
-grep -q "Opening UDP port on 34003" "$MMDVM_LOG" || fail "USRP uplink socket not opened"
+grep -q "Opening UDP port on $USRP_PORT" "$MMDVM_LOG" || fail "USRP uplink socket $USRP_PORT not opened"
 grep -q "is running" "$MMDVM_LOG" || fail "MMDVMHost did not report running"
 
 say "waiting 30 s for stability"
@@ -63,10 +65,10 @@ sleep 30
 systemctl is-active --quiet mmdvmhost || fail "mmdvmhost died during the stability window"
 grep -q "Squelch Tail Elim: yes" "$MMDVM_LOG" || fail "tail elimination disappeared from the log"
 
-if ss -lunp 2>/dev/null | grep -q ":34003"; then
-    say "USRP socket 34003 is bound"
+if ss -lunp 2>/dev/null | grep -q ":$USRP_PORT"; then
+    say "USRP socket $USRP_PORT is bound"
 else
-    fail "USRP socket 34003 is not bound"
+    fail "USRP socket $USRP_PORT is not bound"
 fi
 
 say "deployment successful"

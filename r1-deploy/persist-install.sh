@@ -6,7 +6,7 @@
 set -eu
 
 SRC=$(cd "$(dirname "$0")" && pwd)
-STORE=/usr/local/etc/r1-tail-elim
+STORE=${STORE:-/usr/local/etc/r1-tail-elim}
 BINARY=${1:-$SRC/../MMDVMHost}
 
 [ -f "$BINARY" ] || { echo "binary not found: $BINARY" >&2; exit 1; }
@@ -20,15 +20,16 @@ chown root:root "$STORE/MMDVMHost.r1tail"
 sha256sum "$STORE/MMDVMHost.r1tail" | awk "{print \$1}" > "$STORE/MMDVMHost.sha256"
 chmod 644 "$STORE/MMDVMHost.sha256"
 
-install -m 755 "$SRC/restore-binary.sh" "$STORE/restore-binary.sh"
+sed "s|^STORE=.*|STORE=$STORE|" "$SRC/restore-binary.sh" > "$STORE/restore-binary.sh"
+chmod 755 "$STORE/restore-binary.sh"
 install -m 755 "$SRC/rollback.sh" "$STORE/rollback.sh"
 
 # A post-merge hook restores the binary right after a Pi-Star git pull, before
 # the daily cron starts the service again.
 mkdir -p /usr/local/bin/.git/hooks
-cat > /usr/local/bin/.git/hooks/post-merge <<"HOOK"
+cat > /usr/local/bin/.git/hooks/post-merge <<HOOK
 #!/bin/sh
-/usr/local/etc/r1-tail-elim/restore-binary.sh
+$STORE/restore-binary.sh
 HOOK
 chmod 755 /usr/local/bin/.git/hooks/post-merge
 
@@ -39,7 +40,7 @@ chmod 755 /usr/local/bin/.git/hooks/post-merge
 cat > /etc/cron.d/r1-tail-elim <<"CRON"
 # Re-install the R1 squelch tail elimination MMDVMHost binary if anything
 # replaced it. Runs every 10 minutes, does nothing when the hash matches.
-*/10 * * * * root /usr/local/etc/r1-tail-elim/restore-binary.sh >/dev/null 2>&1
+*/10 * * * * root $STORE/restore-binary.sh >/dev/null 2>&1
 CRON
 chmod 644 /etc/cron.d/r1-tail-elim
 
