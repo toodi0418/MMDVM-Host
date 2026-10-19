@@ -1,0 +1,11 @@
+capture: src/r1-test/results/live/capture-on-early.bin
+complete transmissions analysed: 4
+  #1 {"duration_s": 5.5, "end_gap_ms": 5.5, "frames": 275, "last_100ms_flatness": 0.1775, "last_100ms_rms": 0.0108, "last_40ms_flatness": 0.0478, "last_40ms_rms": 0.0106, "last_loud_frame": 262, "peak_rms": 0.273, "quiet_tail_ms": 240}
+  #2 {"duration_s": 3.0, "end_gap_ms": 10.7, "frames": 150, "last_100ms_flatness": 0.4083, "last_100ms_rms": 0.0087, "last_40ms_flatness": 0.3659, "last_40ms_rms": 0.0085, "last_loud_frame": 88, "peak_rms": 0.2073, "quiet_tail_ms": 1220}
+  #3 {"duration_s": 5.24, "end_gap_ms": 15.8, "frames": 262, "last_100ms_flatness": 0.3152, "last_100ms_rms": 0.0102, "last_40ms_flatness": 0.3512, "last_40ms_rms": 0.0107, "last_loud_frame": 231, "peak_rms": 0.2781, "quiet_tail_ms": 600}
+  #4 {"duration_s": 5.34, "end_gap_ms": null, "frames": 267, "last_100ms_flatness": 0.0502, "last_100ms_rms": 0.1126, "last_40ms_flatness": 0.3482, "last_40ms_rms": 0.0222, "last_loud_frame": 263, "peak_rms": 0.2769, "quiet_tail_ms": 60}
+
+mean last 100 ms RMS        : 0.0356
+mean last 100 ms flatness   : 0.2378
+mean quiet tail             : 530.0 ms
+mean transmission duration  : 4.77 s

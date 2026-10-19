@@ -1,0 +1,14 @@
+capture: src/r1-test/results/live/capture-off.bin
+complete transmissions analysed: 7
+  #1 {"duration_s": 8.74, "end_gap_ms": 15.6, "frames": 437, "last_100ms_flatness": 0.1987, "last_100ms_rms": 0.1555, "last_40ms_flatness": 0.2216, "last_40ms_rms": 0.1425, "last_loud_frame": 436, "peak_rms": 0.2729, "quiet_tail_ms": 0}
+  #2 {"duration_s": 6.76, "end_gap_ms": 5.5, "frames": 338, "last_100ms_flatness": 0.1034, "last_100ms_rms": 0.1621, "last_40ms_flatness": 0.3083, "last_40ms_rms": 0.1589, "last_loud_frame": 337, "peak_rms": 0.2729, "quiet_tail_ms": 0}
+  #3 {"duration_s": 11.5, "end_gap_ms": 5.4, "frames": 575, "last_100ms_flatness": 0.2124, "last_100ms_rms": 0.1612, "last_40ms_flatness": 0.3968, "last_40ms_rms": 0.1409, "last_loud_frame": 574, "peak_rms": 0.3407, "quiet_tail_ms": 0}
+  #4 {"duration_s": 7.24, "end_gap_ms": 10.4, "frames": 362, "last_100ms_flatness": 0.2655, "last_100ms_rms": 0.1584, "last_40ms_flatness": 0.2222, "last_40ms_rms": 0.1559, "last_loud_frame": 361, "peak_rms": 0.2204, "quiet_tail_ms": 0}
+  #5 {"duration_s": 5.76, "end_gap_ms": 0.3, "frames": 288, "last_100ms_flatness": 0.2453, "last_100ms_rms": 0.1653, "last_40ms_flatness": 0.1015, "last_40ms_rms": 0.1653, "last_loud_frame": 287, "peak_rms": 0.2488, "quiet_tail_ms": 0}
+  #6 {"duration_s": 5.5, "end_gap_ms": 0.4, "frames": 275, "last_100ms_flatness": 0.4532, "last_100ms_rms": 0.166, "last_40ms_flatness": 0.2033, "last_40ms_rms": 0.1652, "last_loud_frame": 274, "peak_rms": 0.2166, "quiet_tail_ms": 0}
+  #7 {"duration_s": 6.74, "end_gap_ms": null, "frames": 337, "last_100ms_flatness": 0.1917, "last_100ms_rms": 0.1786, "last_40ms_flatness": 0.3665, "last_40ms_rms": 0.1844, "last_loud_frame": 336, "peak_rms": 0.3721, "quiet_tail_ms": 0}
+
+mean last 100 ms RMS        : 0.1639
+mean last 100 ms flatness   : 0.2386
+mean quiet tail             : 0.0 ms
+mean transmission duration  : 7.46 s
