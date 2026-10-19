@@ -14,7 +14,7 @@ INI=/etc/mmdvmhost
 AUDITLOG=/var/log/r1-tail-elim.log
 TODAY=$(date -u +%F)
 MMDVM_LOG=/var/log/pi-star/MMDVM-$TODAY.log
-USRP_PORT=$(awk "/^\[FM Network\]/{f=1} f&&/^LocalPort=/{print \$2; exit}" "$INI" 2>/dev/null)
+USRP_PORT=$(awk -F= "/^\[FM Network\]/{f=1} f&&/^LocalPort=/{print \$2; exit}" "$INI" 2>/dev/null | tr -d " \r")
 
 say() { echo "[deploy] $*"; echo "$(date -Is) deploy: $*" >> "$AUDITLOG" 2>/dev/null; }
 
