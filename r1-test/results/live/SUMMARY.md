@@ -57,3 +57,39 @@ repeater is long: the loud end segment measured 180 - 700 ms, mean 363 ms.
   elimination is partially verified.** A controlled RF test (a known noise
   burst of 50 / 100 / 200 / 500 ms injected at the receiver) would be needed
   for full verification, and that requires access to the RF side.
+
+## Statistical comparison
+
+Last 100 ms RMS of every analysed transmission:
+
+```
+OFF: 0.1555 0.1621 0.1612 0.1584 0.1653 0.1660 0.1786   median 0.1621
+ON : 0.1538 0.1662 0.0083 0.0108 0.0087 0.0102 0.1126   median 0.0108
+```
+
+Loud endings (last 100 ms RMS >= 0.05): OFF 7/7, ON 3/7.
+
+* Fisher exact, one sided: **p = 0.0350**
+* Mann-Whitney U = 43.0, z = 2.36 (two sided p ~ 0.018)
+
+The split is significant at the five percent level even with seven
+transmissions per arm. Caveat: the two arms carried different traffic at
+different times, so this stays an observational comparison and not a
+controlled experiment.
+
+## Verification of the deployed artefact
+
+The full offline suite was also run against the binary that is actually
+installed on R1, from a copy of the scripts in /tmp so that nothing on the
+running system is modified:
+
+```
+MMDVM_MODIFIED=/usr/local/bin/MMDVMHost \
+MMDVM_BASELINE=/tmp/r1-verify/baseline/MMDVMHost python3 run_tests.py
+=> TOTAL: 15/15 PASS
+```
+
+The tested artefact, the deployed binary and the stored copy in
+/usr/local/etc/r1-tail-elim all have SHA256
+caf4b2e40ca6f9b638c65722760bd9ce3e4a6b7c26ed440e765fad60343cdbfe.
+
