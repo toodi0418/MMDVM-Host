@@ -1,0 +1,7 @@
+D(ms) T(ms) | input  output   corr     delay_fr  residual_tail  speech_cut
+ 200   350 |  14800  14880  1.000000     200        150 ms          0 ms  PASS
+ 200   700 |  17600  17600  1.000000     200        500 ms          0 ms  PASS
+ 400   350 |  14800  14880  1.000000     400          0 ms         50 ms  PASS
+ 400   700 |  17600  17600  1.000000     400        300 ms          0 ms  PASS
+ 200   180 |  13440  13440  1.000000     200          0 ms         20 ms  PASS
+ 400   180 |  13440  13440  1.000000     400          0 ms        220 ms  PASS

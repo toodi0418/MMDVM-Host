@@ -64,7 +64,9 @@ and no speech is cut. If the tail is only 50 ms, a 200 ms delay removes the
 tail but also cuts 150 ms of speech, which the automated tests quantify.
 
 The automated test suite measures all of this from the USRP stream itself, see
-section 6.
+section 6. A verified table of tail length against residual tail and speech
+cut, plus what the R1 receiver was measured to produce, is in
+r1-docs/TAIL-LENGTH-GUIDANCE.md.
 
 ---
 
