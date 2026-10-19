@@ -1,0 +1,823 @@
+[
+  {
+    "name": "compat_disabled_vs_baseline",
+    "pass": true,
+    "checks": [
+      {
+        "check": "modified OFF matches expected upstream behaviour",
+        "pass": true,
+        "detail": "see compat_modified_off"
+      },
+      {
+        "check": "baseline binary matches expected upstream behaviour",
+        "pass": true,
+        "detail": "see compat_baseline_off"
+      },
+      {
+        "check": "modified OFF output equals baseline output",
+        "pass": true,
+        "detail": "corr=1.00000 len 12800 vs 12800"
+      }
+    ],
+    "metrics": {
+      "corr": 1.0,
+      "len_modified": 12800,
+      "len_baseline": 12800
+    }
+  },
+  {
+    "name": "tail_200ms_of_200_d200",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.5000)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.5000"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 200 ms, measured 10.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=13600 input=13600 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=1"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=86"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.7ms max=26.1ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      }
+    ],
+    "metrics": {
+      "output_samples": 13600,
+      "input_samples": 13600,
+      "packets": 85,
+      "start": 1,
+      "end": 1,
+      "corr": 0.9999999967623655,
+      "corr_alt": 0.5000436769856076,
+      "delay_frames": 10,
+      "delay_ms": 200.0,
+      "rss_kb": 3828
+    },
+    "log_tail": "59:03.371     De-Emphasis: yes\nI: 2026-10-19 11:59:03.371     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:03.371     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:03.371     Mode Hang: 3s\nI: 2026-10-19 11:59:03.371     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:03.371     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:03.372 Opening FM network connection\nI: 2026-10-19 11:59:03.372 Opening UDP port on 43700\nI: 2026-10-19 11:59:03.372 Starting protocol handlers\nM: 2026-10-19 11:59:03.372 Mode set to Idle\nI: 2026-10-19 11:59:03.372 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:03.403 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:01.296 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:01.296 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:01.296 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:01.296 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:01.296 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:01.296 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:01.296 General Parameters\nI: 2026-10-19 11:59:01.296     Callsign: TEST\nI: 2026-10-19 11:59:01.296     Id: 1234567\nI: 2026-10-19 11:59:01.296     Duplex: no\nI: 2026-10-19 11:59:01.296     Timeout: 180s\nI: 2026-10-19 11:59:01.296     D-Star: disabled\nI: 2026-10-19 11:59:01.296     DMR: disabled\nI: 2026-10-19 11:59:01.296     YSF: disabled\nI: 2026-10-19 11:59:01.296     P25: disabled\nI: 2026-10-19 11:59:01.296     NXDN: disabled\nI: 2026-10-19 11:59:01.296     M17: disabled\nI: 2026-10-19 11:59:01.296     POCSAG: disabled\nI: 2026-10-19 11:59:01.296     FM: enabled\nI: 2026-10-19 11:59:01.296     AX.25: disabled\nI: 2026-10-19 11:59:01.296 Modem Parameters\nI: 2026-10-19 11:59:01.297     Protocol: udp\nI: 2026-10-19 11:59:01.297     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:01.297     Modem Port: 41869\nI: 2026-10-19 11:59:01.297     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:01.297     Local Port: 47897\nI: 2026-10-19 11:59:01.297     RX Invert: no\nI: 2026-10-19 11:59:01.297     TX Invert: no\nI: 2026-10-19 11:59:01.297     PTT Invert: no\nI: 2026-10-19 11:59:01.297     TX Delay: 100ms\nI: 2026-10-19 11:59:01.297     RX Offset: 0Hz\nI: 2026-10-19 11:59:01.297     TX Offset: 0Hz\nI: 2026-10-19 11:59:01.297     RX DC Offset: 0\nI: 2026-10-19 11:59:01.297     TX DC Offset: 0\nI: 2026-10-19 11:59:01.297     RF Level: 100.0%\nI: 2026-10-19 11:59:01.297     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:01.297     RX Level: 50.0%\nI: 2026-10-19 11:59:01.297     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     FM TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:01.297     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:01.297     Use COS as Lockout: no\nI: 2026-10-19 11:59:01.297 FM Parameters\nI: 2026-10-19 11:59:01.297     Callsign: TEST\nI: 2026-10-19 11:59:01.298     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:01.298     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:01.298     Callsign Time: 10mins\nI: 2026-10-19 11:59:01.298     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:01.298     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:01.298     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:01.298     Callsign At Start: yes\nI: 2026-10-19 11:59:01.298     Callsign At End: yes\nI: 2026-10-19 11:59:01.298     Callsign At Latch: yes\nI: 2026-10-19 11:59:01.298     RF Ack: K\nI: 2026-10-19 11:59:01.298     Ack Speed: 20WPM\nI: 2026-10-19 11:59:01.298     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:01.298     Ack Min Time: 5s\nI: 2026-10-19 11:59:01.298     Ack Delay: 1000ms\nI: 2026-10-19 11:59:01.298     Ack Level: 80.0%\nI: 2026-10-19 11:59:01.298     Timeout: 180s\nI: 2026-10-19 11:59:01.298     Timeout Level: 80.0%\nI: 2026-10-19 11:59:01.298     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:01.298     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:01.298     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:01.298     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:01.298     Kerchunk Time: 0s\nI: 2026-10-19 11:59:01.298     Hang Time: 7s\nI: 2026-10-19 11:59:01.298     Access Mode: 1\nI: 2026-10-19 11:59:01.298     Link Mode: no\nI: 2026-10-19 11:59:01.298     COS Invert: no\nI: 2026-10-19 11:59:01.298     Noise Squelch: no\nI: 2026-10-19 11:59:01.298     RF Audio Boost: x1\nI: 2026-10-19 11:59:01.298     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:01.298     Mode Hang: 10s\nI: 2026-10-19 11:59:01.298     Ext. Ack: N\nI: 2026-10-19 11:59:01.298     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:01.298 Opening the MMDVM\nI: 2026-10-19 11:59:01.298 Opening UDP port on 47897\nI: 2026-10-19 11:59:03.309 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:03.309 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:03.309 Modes: DMR FM\nI: 2026-10-19 11:59:03.371 Display Parameters\nI: 2026-10-19 11:59:03.371     Type: \nW: 2026-10-19 11:59:03.371 No valid display found, disabling\nI: 2026-10-19 11:59:03.371 Opening network connections\nI: 2026-10-19 11:59:03.371 FM Network Parameters\nI: 2026-10-19 11:59:03.371     Protocol: USRP\nI: 2026-10-19 11:59:03.371     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:03.371     Gateway Port: 53736\nI: 2026-10-19 11:59:03.371     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:03.371     Local Port: 43700\nI: 2026-10-19 11:59:03.371     Pre-Emphasis: yes\nI: 2026-10-19 11:59:03.371     De-Emphasis: yes\nI: 2026-10-19 11:59:03.371     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:03.371     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:03.371     Mode Hang: 3s\nI: 2026-10-19 11:59:03.371     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:03.371     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:03.372 Opening FM network connection\nI: 2026-10-19 11:59:03.372 Opening UDP port on 43700\nI: 2026-10-19 11:59:03.372 Starting protocol handlers\nM: 2026-10-19 11:59:03.372 Mode set to Idle\nI: 2026-10-19 11:59:03.372 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:03.403 Mode set to FM"
+  },
+  {
+    "name": "tail_100ms_of_100_d100",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.7515)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.7515"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 100 ms, measured 5.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=12800 input=12800 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=1"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=81"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.6ms max=20.8ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      }
+    ],
+    "metrics": {
+      "output_samples": 12800,
+      "input_samples": 12800,
+      "packets": 80,
+      "start": 1,
+      "end": 1,
+      "corr": 0.9999999970268885,
+      "corr_alt": 0.7515099296513498,
+      "delay_frames": 5,
+      "delay_ms": 100.0,
+      "rss_kb": 3804
+    },
+    "log_tail": "59:09.320     De-Emphasis: yes\nI: 2026-10-19 11:59:09.320     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:09.320     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:09.320     Mode Hang: 3s\nI: 2026-10-19 11:59:09.320     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:09.320     Squelch Tail Elim Delay: 100ms\nM: 2026-10-19 11:59:09.321 Opening FM network connection\nI: 2026-10-19 11:59:09.321 Opening UDP port on 59335\nI: 2026-10-19 11:59:09.321 Starting protocol handlers\nM: 2026-10-19 11:59:09.321 Mode set to Idle\nI: 2026-10-19 11:59:09.321 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:09.353 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:07.245 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:07.246 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:07.246 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:07.246 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:07.246 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:07.246 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:07.246 General Parameters\nI: 2026-10-19 11:59:07.246     Callsign: TEST\nI: 2026-10-19 11:59:07.246     Id: 1234567\nI: 2026-10-19 11:59:07.246     Duplex: no\nI: 2026-10-19 11:59:07.246     Timeout: 180s\nI: 2026-10-19 11:59:07.246     D-Star: disabled\nI: 2026-10-19 11:59:07.246     DMR: disabled\nI: 2026-10-19 11:59:07.246     YSF: disabled\nI: 2026-10-19 11:59:07.246     P25: disabled\nI: 2026-10-19 11:59:07.246     NXDN: disabled\nI: 2026-10-19 11:59:07.246     M17: disabled\nI: 2026-10-19 11:59:07.246     POCSAG: disabled\nI: 2026-10-19 11:59:07.246     FM: enabled\nI: 2026-10-19 11:59:07.246     AX.25: disabled\nI: 2026-10-19 11:59:07.246 Modem Parameters\nI: 2026-10-19 11:59:07.246     Protocol: udp\nI: 2026-10-19 11:59:07.246     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:07.246     Modem Port: 34193\nI: 2026-10-19 11:59:07.246     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:07.246     Local Port: 33093\nI: 2026-10-19 11:59:07.246     RX Invert: no\nI: 2026-10-19 11:59:07.246     TX Invert: no\nI: 2026-10-19 11:59:07.246     PTT Invert: no\nI: 2026-10-19 11:59:07.246     TX Delay: 100ms\nI: 2026-10-19 11:59:07.246     RX Offset: 0Hz\nI: 2026-10-19 11:59:07.246     TX Offset: 0Hz\nI: 2026-10-19 11:59:07.246     RX DC Offset: 0\nI: 2026-10-19 11:59:07.246     TX DC Offset: 0\nI: 2026-10-19 11:59:07.246     RF Level: 100.0%\nI: 2026-10-19 11:59:07.246     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:07.246     RX Level: 50.0%\nI: 2026-10-19 11:59:07.246     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     FM TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:07.247     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:07.247     Use COS as Lockout: no\nI: 2026-10-19 11:59:07.247 FM Parameters\nI: 2026-10-19 11:59:07.247     Callsign: TEST\nI: 2026-10-19 11:59:07.247     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:07.247     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:07.247     Callsign Time: 10mins\nI: 2026-10-19 11:59:07.247     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:07.247     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:07.247     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:07.247     Callsign At Start: yes\nI: 2026-10-19 11:59:07.247     Callsign At End: yes\nI: 2026-10-19 11:59:07.247     Callsign At Latch: yes\nI: 2026-10-19 11:59:07.247     RF Ack: K\nI: 2026-10-19 11:59:07.247     Ack Speed: 20WPM\nI: 2026-10-19 11:59:07.247     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:07.247     Ack Min Time: 5s\nI: 2026-10-19 11:59:07.247     Ack Delay: 1000ms\nI: 2026-10-19 11:59:07.247     Ack Level: 80.0%\nI: 2026-10-19 11:59:07.247     Timeout: 180s\nI: 2026-10-19 11:59:07.247     Timeout Level: 80.0%\nI: 2026-10-19 11:59:07.248     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:07.248     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:07.248     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:07.248     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:07.248     Kerchunk Time: 0s\nI: 2026-10-19 11:59:07.248     Hang Time: 7s\nI: 2026-10-19 11:59:07.248     Access Mode: 1\nI: 2026-10-19 11:59:07.248     Link Mode: no\nI: 2026-10-19 11:59:07.248     COS Invert: no\nI: 2026-10-19 11:59:07.248     Noise Squelch: no\nI: 2026-10-19 11:59:07.248     RF Audio Boost: x1\nI: 2026-10-19 11:59:07.248     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:07.248     Mode Hang: 10s\nI: 2026-10-19 11:59:07.248     Ext. Ack: N\nI: 2026-10-19 11:59:07.248     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:07.248 Opening the MMDVM\nI: 2026-10-19 11:59:07.248 Opening UDP port on 33093\nI: 2026-10-19 11:59:09.258 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:09.259 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:09.259 Modes: DMR FM\nI: 2026-10-19 11:59:09.320 Display Parameters\nI: 2026-10-19 11:59:09.320     Type: \nW: 2026-10-19 11:59:09.320 No valid display found, disabling\nI: 2026-10-19 11:59:09.320 Opening network connections\nI: 2026-10-19 11:59:09.320 FM Network Parameters\nI: 2026-10-19 11:59:09.320     Protocol: USRP\nI: 2026-10-19 11:59:09.320     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:09.320     Gateway Port: 45875\nI: 2026-10-19 11:59:09.320     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:09.320     Local Port: 59335\nI: 2026-10-19 11:59:09.320     Pre-Emphasis: yes\nI: 2026-10-19 11:59:09.320     De-Emphasis: yes\nI: 2026-10-19 11:59:09.320     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:09.320     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:09.320     Mode Hang: 3s\nI: 2026-10-19 11:59:09.320     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:09.320     Squelch Tail Elim Delay: 100ms\nM: 2026-10-19 11:59:09.321 Opening FM network connection\nI: 2026-10-19 11:59:09.321 Opening UDP port on 59335\nI: 2026-10-19 11:59:09.321 Starting protocol handlers\nM: 2026-10-19 11:59:09.321 Mode set to Idle\nI: 2026-10-19 11:59:09.321 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:09.353 Mode set to FM"
+  },
+  {
+    "name": "tail_200ms_of_100_d200",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.5110)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.5110"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 200 ms, measured 10.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=12800 input=12800 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=1"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=81"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.7ms max=25.9ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      }
+    ],
+    "metrics": {
+      "output_samples": 12800,
+      "input_samples": 12800,
+      "packets": 80,
+      "start": 1,
+      "end": 1,
+      "corr": 0.9999999969238368,
+      "corr_alt": 0.5110228658317603,
+      "delay_frames": 10,
+      "delay_ms": 200.0,
+      "rss_kb": 3836
+    },
+    "log_tail": "59:15.061     De-Emphasis: yes\nI: 2026-10-19 11:59:15.061     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:15.061     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:15.062     Mode Hang: 3s\nI: 2026-10-19 11:59:15.062     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:15.062     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:15.062 Opening FM network connection\nI: 2026-10-19 11:59:15.062 Opening UDP port on 40342\nI: 2026-10-19 11:59:15.062 Starting protocol handlers\nM: 2026-10-19 11:59:15.062 Mode set to Idle\nI: 2026-10-19 11:59:15.062 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:15.094 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:12.986 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:12.986 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:12.986 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:12.986 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:12.986 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:12.986 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:12.986 General Parameters\nI: 2026-10-19 11:59:12.986     Callsign: TEST\nI: 2026-10-19 11:59:12.986     Id: 1234567\nI: 2026-10-19 11:59:12.986     Duplex: no\nI: 2026-10-19 11:59:12.986     Timeout: 180s\nI: 2026-10-19 11:59:12.986     D-Star: disabled\nI: 2026-10-19 11:59:12.987     DMR: disabled\nI: 2026-10-19 11:59:12.987     YSF: disabled\nI: 2026-10-19 11:59:12.987     P25: disabled\nI: 2026-10-19 11:59:12.987     NXDN: disabled\nI: 2026-10-19 11:59:12.987     M17: disabled\nI: 2026-10-19 11:59:12.987     POCSAG: disabled\nI: 2026-10-19 11:59:12.987     FM: enabled\nI: 2026-10-19 11:59:12.987     AX.25: disabled\nI: 2026-10-19 11:59:12.987 Modem Parameters\nI: 2026-10-19 11:59:12.987     Protocol: udp\nI: 2026-10-19 11:59:12.987     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:12.987     Modem Port: 37792\nI: 2026-10-19 11:59:12.987     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:12.987     Local Port: 54884\nI: 2026-10-19 11:59:12.987     RX Invert: no\nI: 2026-10-19 11:59:12.987     TX Invert: no\nI: 2026-10-19 11:59:12.987     PTT Invert: no\nI: 2026-10-19 11:59:12.987     TX Delay: 100ms\nI: 2026-10-19 11:59:12.987     RX Offset: 0Hz\nI: 2026-10-19 11:59:12.987     TX Offset: 0Hz\nI: 2026-10-19 11:59:12.987     RX DC Offset: 0\nI: 2026-10-19 11:59:12.987     TX DC Offset: 0\nI: 2026-10-19 11:59:12.987     RF Level: 100.0%\nI: 2026-10-19 11:59:12.987     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:12.987     RX Level: 50.0%\nI: 2026-10-19 11:59:12.987     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     FM TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:12.987     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:12.987     Use COS as Lockout: no\nI: 2026-10-19 11:59:12.988 FM Parameters\nI: 2026-10-19 11:59:12.988     Callsign: TEST\nI: 2026-10-19 11:59:12.988     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:12.988     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:12.988     Callsign Time: 10mins\nI: 2026-10-19 11:59:12.988     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:12.988     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:12.988     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:12.988     Callsign At Start: yes\nI: 2026-10-19 11:59:12.988     Callsign At End: yes\nI: 2026-10-19 11:59:12.988     Callsign At Latch: yes\nI: 2026-10-19 11:59:12.988     RF Ack: K\nI: 2026-10-19 11:59:12.988     Ack Speed: 20WPM\nI: 2026-10-19 11:59:12.988     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:12.988     Ack Min Time: 5s\nI: 2026-10-19 11:59:12.988     Ack Delay: 1000ms\nI: 2026-10-19 11:59:12.988     Ack Level: 80.0%\nI: 2026-10-19 11:59:12.988     Timeout: 180s\nI: 2026-10-19 11:59:12.988     Timeout Level: 80.0%\nI: 2026-10-19 11:59:12.988     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:12.988     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:12.988     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:12.988     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:12.988     Kerchunk Time: 0s\nI: 2026-10-19 11:59:12.988     Hang Time: 7s\nI: 2026-10-19 11:59:12.988     Access Mode: 1\nI: 2026-10-19 11:59:12.988     Link Mode: no\nI: 2026-10-19 11:59:12.988     COS Invert: no\nI: 2026-10-19 11:59:12.988     Noise Squelch: no\nI: 2026-10-19 11:59:12.988     RF Audio Boost: x1\nI: 2026-10-19 11:59:12.988     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:12.988     Mode Hang: 10s\nI: 2026-10-19 11:59:12.988     Ext. Ack: N\nI: 2026-10-19 11:59:12.988     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:12.988 Opening the MMDVM\nI: 2026-10-19 11:59:12.988 Opening UDP port on 54884\nI: 2026-10-19 11:59:15.000 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:15.000 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:15.000 Modes: DMR FM\nI: 2026-10-19 11:59:15.061 Display Parameters\nI: 2026-10-19 11:59:15.061     Type: \nW: 2026-10-19 11:59:15.061 No valid display found, disabling\nI: 2026-10-19 11:59:15.061 Opening network connections\nI: 2026-10-19 11:59:15.061 FM Network Parameters\nI: 2026-10-19 11:59:15.061     Protocol: USRP\nI: 2026-10-19 11:59:15.061     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:15.061     Gateway Port: 51350\nI: 2026-10-19 11:59:15.061     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:15.061     Local Port: 40342\nI: 2026-10-19 11:59:15.061     Pre-Emphasis: yes\nI: 2026-10-19 11:59:15.061     De-Emphasis: yes\nI: 2026-10-19 11:59:15.061     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:15.061     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:15.062     Mode Hang: 3s\nI: 2026-10-19 11:59:15.062     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:15.062     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:15.062 Opening FM network connection\nI: 2026-10-19 11:59:15.062 Opening UDP port on 40342\nI: 2026-10-19 11:59:15.062 Starting protocol handlers\nM: 2026-10-19 11:59:15.062 Mode set to Idle\nI: 2026-10-19 11:59:15.062 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:15.094 Mode set to FM"
+  },
+  {
+    "name": "tail_200ms_of_50_d200",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.5384)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.5384"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 200 ms, measured 10.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=12480 input=12400 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=1"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=79"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.6ms max=25.9ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      }
+    ],
+    "metrics": {
+      "output_samples": 12480,
+      "input_samples": 12400,
+      "packets": 78,
+      "start": 1,
+      "end": 1,
+      "corr": 0.9999999968749193,
+      "corr_alt": 0.538411409643549,
+      "delay_frames": 10,
+      "delay_ms": 200.0,
+      "rss_kb": 3880
+    },
+    "log_tail": "59:20.846     De-Emphasis: yes\nI: 2026-10-19 11:59:20.846     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:20.846     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:20.846     Mode Hang: 3s\nI: 2026-10-19 11:59:20.846     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:20.846     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:20.847 Opening FM network connection\nI: 2026-10-19 11:59:20.847 Opening UDP port on 36253\nI: 2026-10-19 11:59:20.847 Starting protocol handlers\nM: 2026-10-19 11:59:20.847 Mode set to Idle\nI: 2026-10-19 11:59:20.847 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:20.878 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:18.771 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:18.772 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:18.772 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:18.772 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:18.772 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:18.772 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:18.772 General Parameters\nI: 2026-10-19 11:59:18.772     Callsign: TEST\nI: 2026-10-19 11:59:18.772     Id: 1234567\nI: 2026-10-19 11:59:18.772     Duplex: no\nI: 2026-10-19 11:59:18.772     Timeout: 180s\nI: 2026-10-19 11:59:18.772     D-Star: disabled\nI: 2026-10-19 11:59:18.772     DMR: disabled\nI: 2026-10-19 11:59:18.772     YSF: disabled\nI: 2026-10-19 11:59:18.772     P25: disabled\nI: 2026-10-19 11:59:18.772     NXDN: disabled\nI: 2026-10-19 11:59:18.772     M17: disabled\nI: 2026-10-19 11:59:18.772     POCSAG: disabled\nI: 2026-10-19 11:59:18.772     FM: enabled\nI: 2026-10-19 11:59:18.772     AX.25: disabled\nI: 2026-10-19 11:59:18.772 Modem Parameters\nI: 2026-10-19 11:59:18.772     Protocol: udp\nI: 2026-10-19 11:59:18.772     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:18.772     Modem Port: 54946\nI: 2026-10-19 11:59:18.772     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:18.772     Local Port: 51753\nI: 2026-10-19 11:59:18.772     RX Invert: no\nI: 2026-10-19 11:59:18.772     TX Invert: no\nI: 2026-10-19 11:59:18.772     PTT Invert: no\nI: 2026-10-19 11:59:18.772     TX Delay: 100ms\nI: 2026-10-19 11:59:18.772     RX Offset: 0Hz\nI: 2026-10-19 11:59:18.772     TX Offset: 0Hz\nI: 2026-10-19 11:59:18.772     RX DC Offset: 0\nI: 2026-10-19 11:59:18.772     TX DC Offset: 0\nI: 2026-10-19 11:59:18.772     RF Level: 100.0%\nI: 2026-10-19 11:59:18.772     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:18.772     RX Level: 50.0%\nI: 2026-10-19 11:59:18.772     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:18.772     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:18.772     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:18.772     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:18.772     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:18.772     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:18.772     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:18.772     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:18.772     FM TX Level: 50.0%\nI: 2026-10-19 11:59:18.773     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:18.773     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:18.773     Use COS as Lockout: no\nI: 2026-10-19 11:59:18.773 FM Parameters\nI: 2026-10-19 11:59:18.773     Callsign: TEST\nI: 2026-10-19 11:59:18.773     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:18.773     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:18.773     Callsign Time: 10mins\nI: 2026-10-19 11:59:18.773     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:18.773     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:18.773     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:18.773     Callsign At Start: yes\nI: 2026-10-19 11:59:18.773     Callsign At End: yes\nI: 2026-10-19 11:59:18.773     Callsign At Latch: yes\nI: 2026-10-19 11:59:18.773     RF Ack: K\nI: 2026-10-19 11:59:18.773     Ack Speed: 20WPM\nI: 2026-10-19 11:59:18.773     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:18.773     Ack Min Time: 5s\nI: 2026-10-19 11:59:18.773     Ack Delay: 1000ms\nI: 2026-10-19 11:59:18.773     Ack Level: 80.0%\nI: 2026-10-19 11:59:18.773     Timeout: 180s\nI: 2026-10-19 11:59:18.773     Timeout Level: 80.0%\nI: 2026-10-19 11:59:18.773     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:18.773     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:18.773     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:18.773     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:18.773     Kerchunk Time: 0s\nI: 2026-10-19 11:59:18.773     Hang Time: 7s\nI: 2026-10-19 11:59:18.773     Access Mode: 1\nI: 2026-10-19 11:59:18.774     Link Mode: no\nI: 2026-10-19 11:59:18.774     COS Invert: no\nI: 2026-10-19 11:59:18.774     Noise Squelch: no\nI: 2026-10-19 11:59:18.774     RF Audio Boost: x1\nI: 2026-10-19 11:59:18.774     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:18.774     Mode Hang: 10s\nI: 2026-10-19 11:59:18.774     Ext. Ack: N\nI: 2026-10-19 11:59:18.774     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:18.774 Opening the MMDVM\nI: 2026-10-19 11:59:18.774 Opening UDP port on 51753\nI: 2026-10-19 11:59:20.784 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:20.784 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:20.784 Modes: DMR FM\nI: 2026-10-19 11:59:20.846 Display Parameters\nI: 2026-10-19 11:59:20.846     Type: \nW: 2026-10-19 11:59:20.846 No valid display found, disabling\nI: 2026-10-19 11:59:20.846 Opening network connections\nI: 2026-10-19 11:59:20.846 FM Network Parameters\nI: 2026-10-19 11:59:20.846     Protocol: USRP\nI: 2026-10-19 11:59:20.846     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:20.846     Gateway Port: 59927\nI: 2026-10-19 11:59:20.846     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:20.846     Local Port: 36253\nI: 2026-10-19 11:59:20.846     Pre-Emphasis: yes\nI: 2026-10-19 11:59:20.846     De-Emphasis: yes\nI: 2026-10-19 11:59:20.846     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:20.846     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:20.846     Mode Hang: 3s\nI: 2026-10-19 11:59:20.846     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:20.846     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:20.847 Opening FM network connection\nI: 2026-10-19 11:59:20.847 Opening UDP port on 36253\nI: 2026-10-19 11:59:20.847 Starting protocol handlers\nM: 2026-10-19 11:59:20.847 Mode set to Idle\nI: 2026-10-19 11:59:20.847 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:20.878 Mode set to FM"
+  },
+  {
+    "name": "tail_20ms_of_50_d20",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.9620)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.9620"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 20 ms, measured 1.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=12480 input=12400 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=1"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=79"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.6ms max=25.9ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5736"
+      }
+    ],
+    "metrics": {
+      "output_samples": 12480,
+      "input_samples": 12400,
+      "packets": 78,
+      "start": 1,
+      "end": 1,
+      "corr": 0.9999999972585127,
+      "corr_alt": 0.9619522533637221,
+      "delay_frames": 1,
+      "delay_ms": 20.0,
+      "rss_kb": 3888
+    },
+    "log_tail": ":59:26.505     De-Emphasis: yes\nI: 2026-10-19 11:59:26.505     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:26.505     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:26.505     Mode Hang: 3s\nI: 2026-10-19 11:59:26.505     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:26.505     Squelch Tail Elim Delay: 20ms\nM: 2026-10-19 11:59:26.505 Opening FM network connection\nI: 2026-10-19 11:59:26.505 Opening UDP port on 50404\nI: 2026-10-19 11:59:26.505 Starting protocol handlers\nM: 2026-10-19 11:59:26.506 Mode set to Idle\nI: 2026-10-19 11:59:26.506 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:26.537 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:24.430 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:24.430 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:24.430 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:24.430 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:24.430 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:24.430 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:24.430 General Parameters\nI: 2026-10-19 11:59:24.430     Callsign: TEST\nI: 2026-10-19 11:59:24.430     Id: 1234567\nI: 2026-10-19 11:59:24.430     Duplex: no\nI: 2026-10-19 11:59:24.430     Timeout: 180s\nI: 2026-10-19 11:59:24.430     D-Star: disabled\nI: 2026-10-19 11:59:24.430     DMR: disabled\nI: 2026-10-19 11:59:24.430     YSF: disabled\nI: 2026-10-19 11:59:24.430     P25: disabled\nI: 2026-10-19 11:59:24.431     NXDN: disabled\nI: 2026-10-19 11:59:24.431     M17: disabled\nI: 2026-10-19 11:59:24.431     POCSAG: disabled\nI: 2026-10-19 11:59:24.431     FM: enabled\nI: 2026-10-19 11:59:24.431     AX.25: disabled\nI: 2026-10-19 11:59:24.431 Modem Parameters\nI: 2026-10-19 11:59:24.431     Protocol: udp\nI: 2026-10-19 11:59:24.431     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:24.431     Modem Port: 37839\nI: 2026-10-19 11:59:24.431     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:24.431     Local Port: 55567\nI: 2026-10-19 11:59:24.431     RX Invert: no\nI: 2026-10-19 11:59:24.431     TX Invert: no\nI: 2026-10-19 11:59:24.431     PTT Invert: no\nI: 2026-10-19 11:59:24.431     TX Delay: 100ms\nI: 2026-10-19 11:59:24.431     RX Offset: 0Hz\nI: 2026-10-19 11:59:24.431     TX Offset: 0Hz\nI: 2026-10-19 11:59:24.431     RX DC Offset: 0\nI: 2026-10-19 11:59:24.431     TX DC Offset: 0\nI: 2026-10-19 11:59:24.431     RF Level: 100.0%\nI: 2026-10-19 11:59:24.431     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:24.431     RX Level: 50.0%\nI: 2026-10-19 11:59:24.431     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     FM TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:24.431     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:24.431     Use COS as Lockout: no\nI: 2026-10-19 11:59:24.432 FM Parameters\nI: 2026-10-19 11:59:24.432     Callsign: TEST\nI: 2026-10-19 11:59:24.432     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:24.432     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:24.432     Callsign Time: 10mins\nI: 2026-10-19 11:59:24.432     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:24.432     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:24.432     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:24.432     Callsign At Start: yes\nI: 2026-10-19 11:59:24.432     Callsign At End: yes\nI: 2026-10-19 11:59:24.432     Callsign At Latch: yes\nI: 2026-10-19 11:59:24.432     RF Ack: K\nI: 2026-10-19 11:59:24.432     Ack Speed: 20WPM\nI: 2026-10-19 11:59:24.432     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:24.432     Ack Min Time: 5s\nI: 2026-10-19 11:59:24.432     Ack Delay: 1000ms\nI: 2026-10-19 11:59:24.432     Ack Level: 80.0%\nI: 2026-10-19 11:59:24.432     Timeout: 180s\nI: 2026-10-19 11:59:24.432     Timeout Level: 80.0%\nI: 2026-10-19 11:59:24.432     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:24.432     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:24.432     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:24.432     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:24.432     Kerchunk Time: 0s\nI: 2026-10-19 11:59:24.432     Hang Time: 7s\nI: 2026-10-19 11:59:24.432     Access Mode: 1\nI: 2026-10-19 11:59:24.432     Link Mode: no\nI: 2026-10-19 11:59:24.432     COS Invert: no\nI: 2026-10-19 11:59:24.432     Noise Squelch: no\nI: 2026-10-19 11:59:24.432     RF Audio Boost: x1\nI: 2026-10-19 11:59:24.432     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:24.432     Mode Hang: 10s\nI: 2026-10-19 11:59:24.432     Ext. Ack: N\nI: 2026-10-19 11:59:24.432     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:24.432 Opening the MMDVM\nI: 2026-10-19 11:59:24.432 Opening UDP port on 55567\nI: 2026-10-19 11:59:26.443 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:26.443 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:26.443 Modes: DMR FM\nI: 2026-10-19 11:59:26.504 Display Parameters\nI: 2026-10-19 11:59:26.504     Type: \nW: 2026-10-19 11:59:26.504 No valid display found, disabling\nI: 2026-10-19 11:59:26.504 Opening network connections\nI: 2026-10-19 11:59:26.504 FM Network Parameters\nI: 2026-10-19 11:59:26.505     Protocol: USRP\nI: 2026-10-19 11:59:26.505     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:26.505     Gateway Port: 45817\nI: 2026-10-19 11:59:26.505     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:26.505     Local Port: 50404\nI: 2026-10-19 11:59:26.505     Pre-Emphasis: yes\nI: 2026-10-19 11:59:26.505     De-Emphasis: yes\nI: 2026-10-19 11:59:26.505     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:26.505     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:26.505     Mode Hang: 3s\nI: 2026-10-19 11:59:26.505     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:26.505     Squelch Tail Elim Delay: 20ms\nM: 2026-10-19 11:59:26.505 Opening FM network connection\nI: 2026-10-19 11:59:26.505 Opening UDP port on 50404\nI: 2026-10-19 11:59:26.505 Starting protocol handlers\nM: 2026-10-19 11:59:26.506 Mode set to Idle\nI: 2026-10-19 11:59:26.506 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:26.537 Mode set to FM"
+  },
+  {
+    "name": "tail_500ms_of_300_d500",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.5639)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.5639"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 500 ms, measured 25.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=14400 input=14400 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=1"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=91"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.6ms max=25.8ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      }
+    ],
+    "metrics": {
+      "output_samples": 14400,
+      "input_samples": 14400,
+      "packets": 90,
+      "start": 1,
+      "end": 1,
+      "corr": 0.9999999960320919,
+      "corr_alt": 0.5639400822008024,
+      "delay_frames": 25,
+      "delay_ms": 500.0,
+      "rss_kb": 3828
+    },
+    "log_tail": "59:32.168     De-Emphasis: yes\nI: 2026-10-19 11:59:32.168     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:32.168     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:32.168     Mode Hang: 3s\nI: 2026-10-19 11:59:32.168     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:32.168     Squelch Tail Elim Delay: 500ms\nM: 2026-10-19 11:59:32.168 Opening FM network connection\nI: 2026-10-19 11:59:32.168 Opening UDP port on 34402\nI: 2026-10-19 11:59:32.168 Starting protocol handlers\nM: 2026-10-19 11:59:32.169 Mode set to Idle\nI: 2026-10-19 11:59:32.169 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:32.200 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:30.093 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:30.093 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:30.093 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:30.093 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:30.093 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:30.093 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:30.093 General Parameters\nI: 2026-10-19 11:59:30.093     Callsign: TEST\nI: 2026-10-19 11:59:30.093     Id: 1234567\nI: 2026-10-19 11:59:30.093     Duplex: no\nI: 2026-10-19 11:59:30.093     Timeout: 180s\nI: 2026-10-19 11:59:30.093     D-Star: disabled\nI: 2026-10-19 11:59:30.093     DMR: disabled\nI: 2026-10-19 11:59:30.093     YSF: disabled\nI: 2026-10-19 11:59:30.093     P25: disabled\nI: 2026-10-19 11:59:30.093     NXDN: disabled\nI: 2026-10-19 11:59:30.093     M17: disabled\nI: 2026-10-19 11:59:30.093     POCSAG: disabled\nI: 2026-10-19 11:59:30.093     FM: enabled\nI: 2026-10-19 11:59:30.093     AX.25: disabled\nI: 2026-10-19 11:59:30.093 Modem Parameters\nI: 2026-10-19 11:59:30.093     Protocol: udp\nI: 2026-10-19 11:59:30.094     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:30.094     Modem Port: 35391\nI: 2026-10-19 11:59:30.094     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:30.094     Local Port: 48819\nI: 2026-10-19 11:59:30.094     RX Invert: no\nI: 2026-10-19 11:59:30.094     TX Invert: no\nI: 2026-10-19 11:59:30.094     PTT Invert: no\nI: 2026-10-19 11:59:30.094     TX Delay: 100ms\nI: 2026-10-19 11:59:30.094     RX Offset: 0Hz\nI: 2026-10-19 11:59:30.094     TX Offset: 0Hz\nI: 2026-10-19 11:59:30.094     RX DC Offset: 0\nI: 2026-10-19 11:59:30.094     TX DC Offset: 0\nI: 2026-10-19 11:59:30.094     RF Level: 100.0%\nI: 2026-10-19 11:59:30.094     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:30.094     RX Level: 50.0%\nI: 2026-10-19 11:59:30.094     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     FM TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:30.094     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:30.094     Use COS as Lockout: no\nI: 2026-10-19 11:59:30.094 FM Parameters\nI: 2026-10-19 11:59:30.094     Callsign: TEST\nI: 2026-10-19 11:59:30.094     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:30.095     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:30.095     Callsign Time: 10mins\nI: 2026-10-19 11:59:30.095     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:30.095     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:30.095     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:30.095     Callsign At Start: yes\nI: 2026-10-19 11:59:30.095     Callsign At End: yes\nI: 2026-10-19 11:59:30.095     Callsign At Latch: yes\nI: 2026-10-19 11:59:30.095     RF Ack: K\nI: 2026-10-19 11:59:30.095     Ack Speed: 20WPM\nI: 2026-10-19 11:59:30.095     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:30.095     Ack Min Time: 5s\nI: 2026-10-19 11:59:30.095     Ack Delay: 1000ms\nI: 2026-10-19 11:59:30.095     Ack Level: 80.0%\nI: 2026-10-19 11:59:30.095     Timeout: 180s\nI: 2026-10-19 11:59:30.095     Timeout Level: 80.0%\nI: 2026-10-19 11:59:30.095     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:30.095     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:30.095     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:30.095     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:30.095     Kerchunk Time: 0s\nI: 2026-10-19 11:59:30.095     Hang Time: 7s\nI: 2026-10-19 11:59:30.095     Access Mode: 1\nI: 2026-10-19 11:59:30.095     Link Mode: no\nI: 2026-10-19 11:59:30.095     COS Invert: no\nI: 2026-10-19 11:59:30.095     Noise Squelch: no\nI: 2026-10-19 11:59:30.095     RF Audio Boost: x1\nI: 2026-10-19 11:59:30.095     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:30.095     Mode Hang: 10s\nI: 2026-10-19 11:59:30.095     Ext. Ack: N\nI: 2026-10-19 11:59:30.095     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:30.095 Opening the MMDVM\nI: 2026-10-19 11:59:30.095 Opening UDP port on 48819\nI: 2026-10-19 11:59:32.106 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:32.106 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:32.106 Modes: DMR FM\nI: 2026-10-19 11:59:32.167 Display Parameters\nI: 2026-10-19 11:59:32.167     Type: \nW: 2026-10-19 11:59:32.167 No valid display found, disabling\nI: 2026-10-19 11:59:32.167 Opening network connections\nI: 2026-10-19 11:59:32.167 FM Network Parameters\nI: 2026-10-19 11:59:32.167     Protocol: USRP\nI: 2026-10-19 11:59:32.168     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:32.168     Gateway Port: 34605\nI: 2026-10-19 11:59:32.168     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:32.168     Local Port: 34402\nI: 2026-10-19 11:59:32.168     Pre-Emphasis: yes\nI: 2026-10-19 11:59:32.168     De-Emphasis: yes\nI: 2026-10-19 11:59:32.168     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:32.168     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:32.168     Mode Hang: 3s\nI: 2026-10-19 11:59:32.168     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:32.168     Squelch Tail Elim Delay: 500ms\nM: 2026-10-19 11:59:32.168 Opening FM network connection\nI: 2026-10-19 11:59:32.168 Opening UDP port on 34402\nI: 2026-10-19 11:59:32.168 Starting protocol handlers\nM: 2026-10-19 11:59:32.169 Mode set to Idle\nI: 2026-10-19 11:59:32.169 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:32.200 Mode set to FM"
+  },
+  {
+    "name": "eot_delayed_100ms",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.5110)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.5110"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 200 ms, measured 10.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=12800 input=12800 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=1"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=81"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.6ms max=25.8ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      }
+    ],
+    "metrics": {
+      "output_samples": 12800,
+      "input_samples": 12800,
+      "packets": 80,
+      "start": 1,
+      "end": 1,
+      "corr": 0.9999999969238368,
+      "corr_alt": 0.5110228658317603,
+      "delay_frames": 10,
+      "delay_ms": 200.0,
+      "rss_kb": 3804
+    },
+    "log_tail": "59:38.331     De-Emphasis: yes\nI: 2026-10-19 11:59:38.331     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:38.331     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:38.331     Mode Hang: 3s\nI: 2026-10-19 11:59:38.331     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:38.331     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:38.331 Opening FM network connection\nI: 2026-10-19 11:59:38.331 Opening UDP port on 34636\nI: 2026-10-19 11:59:38.331 Starting protocol handlers\nM: 2026-10-19 11:59:38.332 Mode set to Idle\nI: 2026-10-19 11:59:38.332 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:38.363 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:36.255 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:36.256 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:36.256 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:36.256 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:36.256 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:36.256 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:36.256 General Parameters\nI: 2026-10-19 11:59:36.256     Callsign: TEST\nI: 2026-10-19 11:59:36.256     Id: 1234567\nI: 2026-10-19 11:59:36.256     Duplex: no\nI: 2026-10-19 11:59:36.256     Timeout: 180s\nI: 2026-10-19 11:59:36.256     D-Star: disabled\nI: 2026-10-19 11:59:36.256     DMR: disabled\nI: 2026-10-19 11:59:36.256     YSF: disabled\nI: 2026-10-19 11:59:36.256     P25: disabled\nI: 2026-10-19 11:59:36.256     NXDN: disabled\nI: 2026-10-19 11:59:36.256     M17: disabled\nI: 2026-10-19 11:59:36.256     POCSAG: disabled\nI: 2026-10-19 11:59:36.256     FM: enabled\nI: 2026-10-19 11:59:36.256     AX.25: disabled\nI: 2026-10-19 11:59:36.256 Modem Parameters\nI: 2026-10-19 11:59:36.256     Protocol: udp\nI: 2026-10-19 11:59:36.256     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:36.256     Modem Port: 33265\nI: 2026-10-19 11:59:36.256     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:36.256     Local Port: 52230\nI: 2026-10-19 11:59:36.256     RX Invert: no\nI: 2026-10-19 11:59:36.256     TX Invert: no\nI: 2026-10-19 11:59:36.256     PTT Invert: no\nI: 2026-10-19 11:59:36.256     TX Delay: 100ms\nI: 2026-10-19 11:59:36.256     RX Offset: 0Hz\nI: 2026-10-19 11:59:36.256     TX Offset: 0Hz\nI: 2026-10-19 11:59:36.256     RX DC Offset: 0\nI: 2026-10-19 11:59:36.256     TX DC Offset: 0\nI: 2026-10-19 11:59:36.256     RF Level: 100.0%\nI: 2026-10-19 11:59:36.256     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:36.256     RX Level: 50.0%\nI: 2026-10-19 11:59:36.256     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     FM TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:36.257     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:36.257     Use COS as Lockout: no\nI: 2026-10-19 11:59:36.257 FM Parameters\nI: 2026-10-19 11:59:36.257     Callsign: TEST\nI: 2026-10-19 11:59:36.257     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:36.257     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:36.257     Callsign Time: 10mins\nI: 2026-10-19 11:59:36.257     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:36.257     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:36.257     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:36.257     Callsign At Start: yes\nI: 2026-10-19 11:59:36.257     Callsign At End: yes\nI: 2026-10-19 11:59:36.257     Callsign At Latch: yes\nI: 2026-10-19 11:59:36.257     RF Ack: K\nI: 2026-10-19 11:59:36.257     Ack Speed: 20WPM\nI: 2026-10-19 11:59:36.257     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:36.257     Ack Min Time: 5s\nI: 2026-10-19 11:59:36.257     Ack Delay: 1000ms\nI: 2026-10-19 11:59:36.257     Ack Level: 80.0%\nI: 2026-10-19 11:59:36.257     Timeout: 180s\nI: 2026-10-19 11:59:36.257     Timeout Level: 80.0%\nI: 2026-10-19 11:59:36.258     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:36.258     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:36.258     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:36.258     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:36.258     Kerchunk Time: 0s\nI: 2026-10-19 11:59:36.258     Hang Time: 7s\nI: 2026-10-19 11:59:36.258     Access Mode: 1\nI: 2026-10-19 11:59:36.258     Link Mode: no\nI: 2026-10-19 11:59:36.258     COS Invert: no\nI: 2026-10-19 11:59:36.258     Noise Squelch: no\nI: 2026-10-19 11:59:36.258     RF Audio Boost: x1\nI: 2026-10-19 11:59:36.258     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:36.258     Mode Hang: 10s\nI: 2026-10-19 11:59:36.258     Ext. Ack: N\nI: 2026-10-19 11:59:36.258     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:36.258 Opening the MMDVM\nI: 2026-10-19 11:59:36.258 Opening UDP port on 52230\nI: 2026-10-19 11:59:38.269 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:38.269 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:38.269 Modes: DMR FM\nI: 2026-10-19 11:59:38.330 Display Parameters\nI: 2026-10-19 11:59:38.330     Type: \nW: 2026-10-19 11:59:38.330 No valid display found, disabling\nI: 2026-10-19 11:59:38.330 Opening network connections\nI: 2026-10-19 11:59:38.330 FM Network Parameters\nI: 2026-10-19 11:59:38.330     Protocol: USRP\nI: 2026-10-19 11:59:38.330     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:38.330     Gateway Port: 59539\nI: 2026-10-19 11:59:38.331     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:38.331     Local Port: 34636\nI: 2026-10-19 11:59:38.331     Pre-Emphasis: yes\nI: 2026-10-19 11:59:38.331     De-Emphasis: yes\nI: 2026-10-19 11:59:38.331     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:38.331     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:38.331     Mode Hang: 3s\nI: 2026-10-19 11:59:38.331     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:38.331     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:38.331 Opening FM network connection\nI: 2026-10-19 11:59:38.331 Opening UDP port on 34636\nI: 2026-10-19 11:59:38.331 Starting protocol handlers\nM: 2026-10-19 11:59:38.332 Mode set to Idle\nI: 2026-10-19 11:59:38.332 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:38.363 Mode set to FM"
+  },
+  {
+    "name": "rapid_ptt",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.3410)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.3410"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 200 ms, measured 10.0 fr (r=1.000), 10.0 fr (r=1.000), 10.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=9600 input=9600 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=3 expected=3 bursts=3"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=3"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=3 packets=63"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.6ms max=23.3ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      }
+    ],
+    "metrics": {
+      "output_samples": 9600,
+      "input_samples": 9600,
+      "packets": 60,
+      "start": 3,
+      "end": 3,
+      "corr": 0.9999999919031111,
+      "corr_alt": 0.34102804608620924,
+      "delay_frames": 10,
+      "delay_ms": 200.0,
+      "rss_kb": 3920
+    },
+    "log_tail": "59:43.955     De-Emphasis: yes\nI: 2026-10-19 11:59:43.955     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:43.955     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:43.955     Mode Hang: 3s\nI: 2026-10-19 11:59:43.955     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:43.955     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:43.956 Opening FM network connection\nI: 2026-10-19 11:59:43.956 Opening UDP port on 35998\nI: 2026-10-19 11:59:43.956 Starting protocol handlers\nM: 2026-10-19 11:59:43.956 Mode set to Idle\nI: 2026-10-19 11:59:43.956 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:43.987 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:41.880 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:41.881 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:41.881 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:41.881 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:41.881 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:41.881 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:41.881 General Parameters\nI: 2026-10-19 11:59:41.881     Callsign: TEST\nI: 2026-10-19 11:59:41.881     Id: 1234567\nI: 2026-10-19 11:59:41.881     Duplex: no\nI: 2026-10-19 11:59:41.881     Timeout: 180s\nI: 2026-10-19 11:59:41.881     D-Star: disabled\nI: 2026-10-19 11:59:41.881     DMR: disabled\nI: 2026-10-19 11:59:41.881     YSF: disabled\nI: 2026-10-19 11:59:41.881     P25: disabled\nI: 2026-10-19 11:59:41.881     NXDN: disabled\nI: 2026-10-19 11:59:41.881     M17: disabled\nI: 2026-10-19 11:59:41.881     POCSAG: disabled\nI: 2026-10-19 11:59:41.881     FM: enabled\nI: 2026-10-19 11:59:41.881     AX.25: disabled\nI: 2026-10-19 11:59:41.881 Modem Parameters\nI: 2026-10-19 11:59:41.881     Protocol: udp\nI: 2026-10-19 11:59:41.881     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:41.881     Modem Port: 58670\nI: 2026-10-19 11:59:41.881     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:41.881     Local Port: 50499\nI: 2026-10-19 11:59:41.881     RX Invert: no\nI: 2026-10-19 11:59:41.881     TX Invert: no\nI: 2026-10-19 11:59:41.881     PTT Invert: no\nI: 2026-10-19 11:59:41.881     TX Delay: 100ms\nI: 2026-10-19 11:59:41.881     RX Offset: 0Hz\nI: 2026-10-19 11:59:41.881     TX Offset: 0Hz\nI: 2026-10-19 11:59:41.881     RX DC Offset: 0\nI: 2026-10-19 11:59:41.881     TX DC Offset: 0\nI: 2026-10-19 11:59:41.881     RF Level: 100.0%\nI: 2026-10-19 11:59:41.881     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:41.881     RX Level: 50.0%\nI: 2026-10-19 11:59:41.881     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:41.881     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:41.881     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:41.881     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:41.881     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:41.881     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:41.881     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:41.881     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:41.882     FM TX Level: 50.0%\nI: 2026-10-19 11:59:41.882     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:41.882     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:41.882     Use COS as Lockout: no\nI: 2026-10-19 11:59:41.882 FM Parameters\nI: 2026-10-19 11:59:41.882     Callsign: TEST\nI: 2026-10-19 11:59:41.882     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:41.882     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:41.882     Callsign Time: 10mins\nI: 2026-10-19 11:59:41.882     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:41.882     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:41.882     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:41.882     Callsign At Start: yes\nI: 2026-10-19 11:59:41.882     Callsign At End: yes\nI: 2026-10-19 11:59:41.882     Callsign At Latch: yes\nI: 2026-10-19 11:59:41.882     RF Ack: K\nI: 2026-10-19 11:59:41.882     Ack Speed: 20WPM\nI: 2026-10-19 11:59:41.882     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:41.882     Ack Min Time: 5s\nI: 2026-10-19 11:59:41.882     Ack Delay: 1000ms\nI: 2026-10-19 11:59:41.882     Ack Level: 80.0%\nI: 2026-10-19 11:59:41.882     Timeout: 180s\nI: 2026-10-19 11:59:41.882     Timeout Level: 80.0%\nI: 2026-10-19 11:59:41.882     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:41.882     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:41.882     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:41.882     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:41.882     Kerchunk Time: 0s\nI: 2026-10-19 11:59:41.882     Hang Time: 7s\nI: 2026-10-19 11:59:41.882     Access Mode: 1\nI: 2026-10-19 11:59:41.882     Link Mode: no\nI: 2026-10-19 11:59:41.882     COS Invert: no\nI: 2026-10-19 11:59:41.882     Noise Squelch: no\nI: 2026-10-19 11:59:41.883     RF Audio Boost: x1\nI: 2026-10-19 11:59:41.883     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:41.883     Mode Hang: 10s\nI: 2026-10-19 11:59:41.883     Ext. Ack: N\nI: 2026-10-19 11:59:41.883     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:41.883 Opening the MMDVM\nI: 2026-10-19 11:59:41.883 Opening UDP port on 50499\nI: 2026-10-19 11:59:43.893 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:43.893 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:43.893 Modes: DMR FM\nI: 2026-10-19 11:59:43.955 Display Parameters\nI: 2026-10-19 11:59:43.955     Type: \nW: 2026-10-19 11:59:43.955 No valid display found, disabling\nI: 2026-10-19 11:59:43.955 Opening network connections\nI: 2026-10-19 11:59:43.955 FM Network Parameters\nI: 2026-10-19 11:59:43.955     Protocol: USRP\nI: 2026-10-19 11:59:43.955     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:43.955     Gateway Port: 40366\nI: 2026-10-19 11:59:43.955     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:43.955     Local Port: 35998\nI: 2026-10-19 11:59:43.955     Pre-Emphasis: yes\nI: 2026-10-19 11:59:43.955     De-Emphasis: yes\nI: 2026-10-19 11:59:43.955     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:43.955     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:43.955     Mode Hang: 3s\nI: 2026-10-19 11:59:43.955     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:43.955     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:43.956 Opening FM network connection\nI: 2026-10-19 11:59:43.956 Opening UDP port on 35998\nI: 2026-10-19 11:59:43.956 Starting protocol handlers\nM: 2026-10-19 11:59:43.956 Mode set to Idle\nI: 2026-10-19 11:59:43.956 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:43.987 Mode set to FM"
+  },
+  {
+    "name": "no_eot_gap_reset",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.4133)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.4133"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 200 ms, measured 10.0 fr (r=1.000), 10.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=8000 input=8000 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=2"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=51"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.6ms max=602.5ms (limit 700)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      }
+    ],
+    "metrics": {
+      "output_samples": 8000,
+      "input_samples": 8000,
+      "packets": 50,
+      "start": 1,
+      "end": 1,
+      "corr": 0.9999999886800054,
+      "corr_alt": 0.413274858737148,
+      "delay_frames": 10,
+      "delay_ms": 200.0,
+      "rss_kb": 3908
+    },
+    "log_tail": "59:48.899     De-Emphasis: yes\nI: 2026-10-19 11:59:48.899     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:48.899     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:48.899     Mode Hang: 3s\nI: 2026-10-19 11:59:48.899     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:48.899     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:48.899 Opening FM network connection\nI: 2026-10-19 11:59:48.900 Opening UDP port on 39717\nI: 2026-10-19 11:59:48.900 Starting protocol handlers\nM: 2026-10-19 11:59:48.900 Mode set to Idle\nI: 2026-10-19 11:59:48.900 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:48.931 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:46.824 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:46.824 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:46.824 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:46.824 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:46.824 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:46.824 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:46.824 General Parameters\nI: 2026-10-19 11:59:46.824     Callsign: TEST\nI: 2026-10-19 11:59:46.825     Id: 1234567\nI: 2026-10-19 11:59:46.825     Duplex: no\nI: 2026-10-19 11:59:46.825     Timeout: 180s\nI: 2026-10-19 11:59:46.825     D-Star: disabled\nI: 2026-10-19 11:59:46.825     DMR: disabled\nI: 2026-10-19 11:59:46.825     YSF: disabled\nI: 2026-10-19 11:59:46.825     P25: disabled\nI: 2026-10-19 11:59:46.825     NXDN: disabled\nI: 2026-10-19 11:59:46.825     M17: disabled\nI: 2026-10-19 11:59:46.825     POCSAG: disabled\nI: 2026-10-19 11:59:46.825     FM: enabled\nI: 2026-10-19 11:59:46.825     AX.25: disabled\nI: 2026-10-19 11:59:46.825 Modem Parameters\nI: 2026-10-19 11:59:46.825     Protocol: udp\nI: 2026-10-19 11:59:46.825     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:46.825     Modem Port: 38287\nI: 2026-10-19 11:59:46.825     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:46.825     Local Port: 50836\nI: 2026-10-19 11:59:46.825     RX Invert: no\nI: 2026-10-19 11:59:46.825     TX Invert: no\nI: 2026-10-19 11:59:46.825     PTT Invert: no\nI: 2026-10-19 11:59:46.825     TX Delay: 100ms\nI: 2026-10-19 11:59:46.825     RX Offset: 0Hz\nI: 2026-10-19 11:59:46.825     TX Offset: 0Hz\nI: 2026-10-19 11:59:46.825     RX DC Offset: 0\nI: 2026-10-19 11:59:46.825     TX DC Offset: 0\nI: 2026-10-19 11:59:46.825     RF Level: 100.0%\nI: 2026-10-19 11:59:46.825     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:46.825     RX Level: 50.0%\nI: 2026-10-19 11:59:46.825     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     FM TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:46.825     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:46.825     Use COS as Lockout: no\nI: 2026-10-19 11:59:46.826 FM Parameters\nI: 2026-10-19 11:59:46.826     Callsign: TEST\nI: 2026-10-19 11:59:46.826     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:46.826     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:46.826     Callsign Time: 10mins\nI: 2026-10-19 11:59:46.826     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:46.826     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:46.826     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:46.826     Callsign At Start: yes\nI: 2026-10-19 11:59:46.826     Callsign At End: yes\nI: 2026-10-19 11:59:46.826     Callsign At Latch: yes\nI: 2026-10-19 11:59:46.826     RF Ack: K\nI: 2026-10-19 11:59:46.826     Ack Speed: 20WPM\nI: 2026-10-19 11:59:46.826     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:46.826     Ack Min Time: 5s\nI: 2026-10-19 11:59:46.826     Ack Delay: 1000ms\nI: 2026-10-19 11:59:46.826     Ack Level: 80.0%\nI: 2026-10-19 11:59:46.826     Timeout: 180s\nI: 2026-10-19 11:59:46.826     Timeout Level: 80.0%\nI: 2026-10-19 11:59:46.826     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:46.826     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:46.826     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:46.826     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:46.826     Kerchunk Time: 0s\nI: 2026-10-19 11:59:46.826     Hang Time: 7s\nI: 2026-10-19 11:59:46.826     Access Mode: 1\nI: 2026-10-19 11:59:46.826     Link Mode: no\nI: 2026-10-19 11:59:46.826     COS Invert: no\nI: 2026-10-19 11:59:46.826     Noise Squelch: no\nI: 2026-10-19 11:59:46.826     RF Audio Boost: x1\nI: 2026-10-19 11:59:46.826     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:46.826     Mode Hang: 10s\nI: 2026-10-19 11:59:46.826     Ext. Ack: N\nI: 2026-10-19 11:59:46.826     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:46.826 Opening the MMDVM\nI: 2026-10-19 11:59:46.826 Opening UDP port on 50836\nI: 2026-10-19 11:59:48.837 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:48.837 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:48.837 Modes: DMR FM\nI: 2026-10-19 11:59:48.898 Display Parameters\nI: 2026-10-19 11:59:48.898     Type: \nW: 2026-10-19 11:59:48.898 No valid display found, disabling\nI: 2026-10-19 11:59:48.899 Opening network connections\nI: 2026-10-19 11:59:48.899 FM Network Parameters\nI: 2026-10-19 11:59:48.899     Protocol: USRP\nI: 2026-10-19 11:59:48.899     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:48.899     Gateway Port: 38016\nI: 2026-10-19 11:59:48.899     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:48.899     Local Port: 39717\nI: 2026-10-19 11:59:48.899     Pre-Emphasis: yes\nI: 2026-10-19 11:59:48.899     De-Emphasis: yes\nI: 2026-10-19 11:59:48.899     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:48.899     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:48.899     Mode Hang: 3s\nI: 2026-10-19 11:59:48.899     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:48.899     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:48.899 Opening FM network connection\nI: 2026-10-19 11:59:48.900 Opening UDP port on 39717\nI: 2026-10-19 11:59:48.900 Starting protocol handlers\nM: 2026-10-19 11:59:48.900 Mode set to Idle\nI: 2026-10-19 11:59:48.900 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:48.931 Mode set to FM"
+  },
+  {
+    "name": "long_run",
+    "pass": true,
+    "checks": [
+      {
+        "check": "waveform matches expected",
+        "pass": true,
+        "detail": "corr=1.0000 (alt hypothesis 0.6308)"
+      },
+      {
+        "check": "expected hypothesis is the closer one",
+        "pass": true,
+        "detail": "corr=1.0000 vs alt=0.6308"
+      },
+      {
+        "check": "delay matches configured value",
+        "pass": true,
+        "detail": "configured 200 ms, measured 10.0 fr (r=1.000)"
+      },
+      {
+        "check": "stream length matches",
+        "pass": true,
+        "detail": "output=160000 input=160000 samples"
+      },
+      {
+        "check": "USRP start packet count matches transmissions",
+        "pass": true,
+        "detail": "start=1 expected=1 bursts=1"
+      },
+      {
+        "check": "USRP end packet sent",
+        "pass": true,
+        "detail": "end packets=1"
+      },
+      {
+        "check": "USRP sequence contiguous inside each transmission",
+        "pass": true,
+        "detail": "transmissions=1 packets=1001"
+      },
+      {
+        "check": "packet cadence",
+        "pass": true,
+        "detail": "median=20.7ms max=34.3ms (limit 120)"
+      },
+      {
+        "check": "payload size is 320 bytes",
+        "pass": true,
+        "detail": "sizes=[320]"
+      },
+      {
+        "check": "no delay line failure logged",
+        "pass": true,
+        "detail": "log length=5737"
+      },
+      {
+        "check": "no memory growth over 20 s transmission",
+        "pass": true,
+        "detail": "rss 3876 -> 3876 kB (delta 0)"
+      }
+    ],
+    "metrics": {
+      "output_samples": 160000,
+      "input_samples": 160000,
+      "packets": 1000,
+      "start": 1,
+      "end": 1,
+      "corr": 0.999999997173901,
+      "corr_alt": 0.6308348313934466,
+      "delay_frames": 10,
+      "delay_ms": 200.0,
+      "rss_kb": 3876,
+      "rss_delta_kb": 0
+    },
+    "log_tail": "59:59.166     De-Emphasis: yes\nI: 2026-10-19 11:59:59.166     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:59.166     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:59.166     Mode Hang: 3s\nI: 2026-10-19 11:59:59.166     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:59.166     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:59.167 Opening FM network connection\nI: 2026-10-19 11:59:59.167 Opening UDP port on 58267\nI: 2026-10-19 11:59:59.167 Starting protocol handlers\nM: 2026-10-19 11:59:59.167 Mode set to Idle\nI: 2026-10-19 11:59:59.167 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:59.199 Mode set to FM",
+    "log_full": "I: 2026-10-19 11:59:57.089 This software is for use on amateur radio networks only,\nI: 2026-10-19 11:59:57.089 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 11:59:57.089 commercial networks is strictly prohibited.\nI: 2026-10-19 11:59:57.089 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 11:59:57.089 MMDVMHost-20240207 is starting\nI: 2026-10-19 11:59:57.089 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 11:59:57.089 General Parameters\nI: 2026-10-19 11:59:57.089     Callsign: TEST\nI: 2026-10-19 11:59:57.089     Id: 1234567\nI: 2026-10-19 11:59:57.089     Duplex: no\nI: 2026-10-19 11:59:57.089     Timeout: 180s\nI: 2026-10-19 11:59:57.089     D-Star: disabled\nI: 2026-10-19 11:59:57.089     DMR: disabled\nI: 2026-10-19 11:59:57.089     YSF: disabled\nI: 2026-10-19 11:59:57.089     P25: disabled\nI: 2026-10-19 11:59:57.089     NXDN: disabled\nI: 2026-10-19 11:59:57.089     M17: disabled\nI: 2026-10-19 11:59:57.089     POCSAG: disabled\nI: 2026-10-19 11:59:57.089     FM: enabled\nI: 2026-10-19 11:59:57.089     AX.25: disabled\nI: 2026-10-19 11:59:57.089 Modem Parameters\nI: 2026-10-19 11:59:57.089     Protocol: udp\nI: 2026-10-19 11:59:57.089     Modem Address: 127.0.0.1\nI: 2026-10-19 11:59:57.089     Modem Port: 40890\nI: 2026-10-19 11:59:57.090     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:57.090     Local Port: 46048\nI: 2026-10-19 11:59:57.090     RX Invert: no\nI: 2026-10-19 11:59:57.090     TX Invert: no\nI: 2026-10-19 11:59:57.090     PTT Invert: no\nI: 2026-10-19 11:59:57.090     TX Delay: 100ms\nI: 2026-10-19 11:59:57.090     RX Offset: 0Hz\nI: 2026-10-19 11:59:57.090     TX Offset: 0Hz\nI: 2026-10-19 11:59:57.090     RX DC Offset: 0\nI: 2026-10-19 11:59:57.090     TX DC Offset: 0\nI: 2026-10-19 11:59:57.090     RF Level: 100.0%\nI: 2026-10-19 11:59:57.090     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 11:59:57.090     RX Level: 50.0%\nI: 2026-10-19 11:59:57.090     CW Id TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     D-Star TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     DMR TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     YSF TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     P25 TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     NXDN TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     M17 TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     POCSAG TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     FM TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     AX.25 TX Level: 50.0%\nI: 2026-10-19 11:59:57.090     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 11:59:57.090     Use COS as Lockout: no\nI: 2026-10-19 11:59:57.090 FM Parameters\nI: 2026-10-19 11:59:57.090     Callsign: TEST\nI: 2026-10-19 11:59:57.090     Callsign Speed: 20WPM\nI: 2026-10-19 11:59:57.090     Callsign Frequency: 1000Hz\nI: 2026-10-19 11:59:57.090     Callsign Time: 10mins\nI: 2026-10-19 11:59:57.090     Callsign Holdoff: 1/1\nI: 2026-10-19 11:59:57.091     Callsign High Level: 35.0%\nI: 2026-10-19 11:59:57.091     Callsign Low Level: 15.0%\nI: 2026-10-19 11:59:57.091     Callsign At Start: yes\nI: 2026-10-19 11:59:57.091     Callsign At End: yes\nI: 2026-10-19 11:59:57.091     Callsign At Latch: yes\nI: 2026-10-19 11:59:57.091     RF Ack: K\nI: 2026-10-19 11:59:57.091     Ack Speed: 20WPM\nI: 2026-10-19 11:59:57.091     Ack Frequency: 1750Hz\nI: 2026-10-19 11:59:57.091     Ack Min Time: 5s\nI: 2026-10-19 11:59:57.091     Ack Delay: 1000ms\nI: 2026-10-19 11:59:57.091     Ack Level: 80.0%\nI: 2026-10-19 11:59:57.091     Timeout: 180s\nI: 2026-10-19 11:59:57.091     Timeout Level: 80.0%\nI: 2026-10-19 11:59:57.091     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 11:59:57.091     CTCSS High Threshold: 30\nI: 2026-10-19 11:59:57.091     CTCSS Low Threshold: 20\nI: 2026-10-19 11:59:57.091     CTCSS Level: 2.0%\nI: 2026-10-19 11:59:57.091     Kerchunk Time: 0s\nI: 2026-10-19 11:59:57.091     Hang Time: 7s\nI: 2026-10-19 11:59:57.091     Access Mode: 1\nI: 2026-10-19 11:59:57.091     Link Mode: no\nI: 2026-10-19 11:59:57.091     COS Invert: no\nI: 2026-10-19 11:59:57.091     Noise Squelch: no\nI: 2026-10-19 11:59:57.091     RF Audio Boost: x1\nI: 2026-10-19 11:59:57.091     Max. Deviation Level: 90.0%\nI: 2026-10-19 11:59:57.091     Mode Hang: 10s\nI: 2026-10-19 11:59:57.091     Ext. Ack: N\nI: 2026-10-19 11:59:57.091     Ext. Audio Boost: x1\nM: 2026-10-19 11:59:57.091 Opening the MMDVM\nI: 2026-10-19 11:59:57.091 Opening UDP port on 46048\nI: 2026-10-19 11:59:59.102 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 11:59:59.103 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 11:59:59.103 Modes: DMR FM\nI: 2026-10-19 11:59:59.166 Display Parameters\nI: 2026-10-19 11:59:59.166     Type: \nW: 2026-10-19 11:59:59.166 No valid display found, disabling\nI: 2026-10-19 11:59:59.166 Opening network connections\nI: 2026-10-19 11:59:59.166 FM Network Parameters\nI: 2026-10-19 11:59:59.166     Protocol: USRP\nI: 2026-10-19 11:59:59.166     Gateway Address: 127.0.0.1\nI: 2026-10-19 11:59:59.166     Gateway Port: 53540\nI: 2026-10-19 11:59:59.166     Local Address: 127.0.0.1\nI: 2026-10-19 11:59:59.166     Local Port: 58267\nI: 2026-10-19 11:59:59.166     Pre-Emphasis: yes\nI: 2026-10-19 11:59:59.166     De-Emphasis: yes\nI: 2026-10-19 11:59:59.166     TX Audio Gain: 1.00\nI: 2026-10-19 11:59:59.166     RX Audio Gain: 1.00\nI: 2026-10-19 11:59:59.166     Mode Hang: 3s\nI: 2026-10-19 11:59:59.166     Squelch Tail Elim: yes\nI: 2026-10-19 11:59:59.166     Squelch Tail Elim Delay: 200ms\nM: 2026-10-19 11:59:59.167 Opening FM network connection\nI: 2026-10-19 11:59:59.167 Opening UDP port on 58267\nI: 2026-10-19 11:59:59.167 Starting protocol handlers\nM: 2026-10-19 11:59:59.167 Mode set to Idle\nI: 2026-10-19 11:59:59.167 MMDVMHost-20240207 is running\nM: 2026-10-19 11:59:59.199 Mode set to FM"
+  },
+  {
+    "name": "invalid_low_5ms",
+    "pass": true,
+    "checks": [
+      {
+        "check": "warning logged for invalid value",
+        "pass": true,
+        "detail": [
+          "W: 2026-10-19 12:00:38.071 SquelchTailElimMs=5 is below the minimum of 20ms, using the minimum"
+        ]
+      },
+      {
+        "check": "effective value clamped and logged",
+        "pass": true,
+        "detail": "expect 20ms"
+      }
+    ],
+    "metrics": {
+      "rss_kb": 4000
+    },
+    "log_tail": "8.071     Gateway Port: 44628\nI: 2026-10-19 12:00:38.071     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:38.071     Local Port: 33831\nI: 2026-10-19 12:00:38.071     Pre-Emphasis: yes\nI: 2026-10-19 12:00:38.071     De-Emphasis: yes\nI: 2026-10-19 12:00:38.071     TX Audio Gain: 1.00\nI: 2026-10-19 12:00:38.071     RX Audio Gain: 1.00\nI: 2026-10-19 12:00:38.071     Mode Hang: 3s\nI: 2026-10-19 12:00:38.071     Squelch Tail Elim: yes\nI: 2026-10-19 12:00:38.071     Squelch Tail Elim Delay: 20ms\nM: 2026-10-19 12:00:38.072 Opening FM network connection\nI: 2026-10-19 12:00:38.072 Opening UDP port on 33831\nI: 2026-10-19 12:00:38.072 Starting protocol handlers\nM: 2026-10-19 12:00:38.072 Mode set to Idle\nI: 2026-10-19 12:00:38.072 MMDVMHost-20240207 is running\nM: 2026-10-19 12:00:38.160 Mode set to FM",
+    "log_full": "I: 2026-10-19 12:00:35.996 This software is for use on amateur radio networks only,\nI: 2026-10-19 12:00:35.997 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 12:00:35.997 commercial networks is strictly prohibited.\nI: 2026-10-19 12:00:35.997 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 12:00:35.997 MMDVMHost-20240207 is starting\nI: 2026-10-19 12:00:35.997 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 12:00:35.997 General Parameters\nI: 2026-10-19 12:00:35.997     Callsign: TEST\nI: 2026-10-19 12:00:35.997     Id: 1234567\nI: 2026-10-19 12:00:35.997     Duplex: no\nI: 2026-10-19 12:00:35.997     Timeout: 180s\nI: 2026-10-19 12:00:35.997     D-Star: disabled\nI: 2026-10-19 12:00:35.997     DMR: disabled\nI: 2026-10-19 12:00:35.997     YSF: disabled\nI: 2026-10-19 12:00:35.997     P25: disabled\nI: 2026-10-19 12:00:35.997     NXDN: disabled\nI: 2026-10-19 12:00:35.997     M17: disabled\nI: 2026-10-19 12:00:35.997     POCSAG: disabled\nI: 2026-10-19 12:00:35.997     FM: enabled\nI: 2026-10-19 12:00:35.997     AX.25: disabled\nI: 2026-10-19 12:00:35.997 Modem Parameters\nI: 2026-10-19 12:00:35.997     Protocol: udp\nI: 2026-10-19 12:00:35.997     Modem Address: 127.0.0.1\nI: 2026-10-19 12:00:35.997     Modem Port: 33956\nI: 2026-10-19 12:00:35.997     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:35.997     Local Port: 46278\nI: 2026-10-19 12:00:35.997     RX Invert: no\nI: 2026-10-19 12:00:35.997     TX Invert: no\nI: 2026-10-19 12:00:35.997     PTT Invert: no\nI: 2026-10-19 12:00:35.997     TX Delay: 100ms\nI: 2026-10-19 12:00:35.997     RX Offset: 0Hz\nI: 2026-10-19 12:00:35.997     TX Offset: 0Hz\nI: 2026-10-19 12:00:35.997     RX DC Offset: 0\nI: 2026-10-19 12:00:35.997     TX DC Offset: 0\nI: 2026-10-19 12:00:35.997     RF Level: 100.0%\nI: 2026-10-19 12:00:35.997     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 12:00:35.997     RX Level: 50.0%\nI: 2026-10-19 12:00:35.997     CW Id TX Level: 50.0%\nI: 2026-10-19 12:00:35.997     D-Star TX Level: 50.0%\nI: 2026-10-19 12:00:35.997     DMR TX Level: 50.0%\nI: 2026-10-19 12:00:35.997     YSF TX Level: 50.0%\nI: 2026-10-19 12:00:35.997     P25 TX Level: 50.0%\nI: 2026-10-19 12:00:35.997     NXDN TX Level: 50.0%\nI: 2026-10-19 12:00:35.998     M17 TX Level: 50.0%\nI: 2026-10-19 12:00:35.998     POCSAG TX Level: 50.0%\nI: 2026-10-19 12:00:35.998     FM TX Level: 50.0%\nI: 2026-10-19 12:00:35.998     AX.25 TX Level: 50.0%\nI: 2026-10-19 12:00:35.998     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 12:00:35.998     Use COS as Lockout: no\nI: 2026-10-19 12:00:35.998 FM Parameters\nI: 2026-10-19 12:00:35.998     Callsign: TEST\nI: 2026-10-19 12:00:35.998     Callsign Speed: 20WPM\nI: 2026-10-19 12:00:35.998     Callsign Frequency: 1000Hz\nI: 2026-10-19 12:00:35.998     Callsign Time: 10mins\nI: 2026-10-19 12:00:35.998     Callsign Holdoff: 1/1\nI: 2026-10-19 12:00:35.998     Callsign High Level: 35.0%\nI: 2026-10-19 12:00:35.998     Callsign Low Level: 15.0%\nI: 2026-10-19 12:00:35.998     Callsign At Start: yes\nI: 2026-10-19 12:00:35.998     Callsign At End: yes\nI: 2026-10-19 12:00:35.998     Callsign At Latch: yes\nI: 2026-10-19 12:00:35.998     RF Ack: K\nI: 2026-10-19 12:00:35.998     Ack Speed: 20WPM\nI: 2026-10-19 12:00:35.998     Ack Frequency: 1750Hz\nI: 2026-10-19 12:00:35.998     Ack Min Time: 5s\nI: 2026-10-19 12:00:35.998     Ack Delay: 1000ms\nI: 2026-10-19 12:00:35.998     Ack Level: 80.0%\nI: 2026-10-19 12:00:35.998     Timeout: 180s\nI: 2026-10-19 12:00:35.998     Timeout Level: 80.0%\nI: 2026-10-19 12:00:35.998     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 12:00:35.998     CTCSS High Threshold: 30\nI: 2026-10-19 12:00:35.998     CTCSS Low Threshold: 20\nI: 2026-10-19 12:00:35.998     CTCSS Level: 2.0%\nI: 2026-10-19 12:00:35.998     Kerchunk Time: 0s\nI: 2026-10-19 12:00:35.998     Hang Time: 7s\nI: 2026-10-19 12:00:35.999     Access Mode: 1\nI: 2026-10-19 12:00:35.999     Link Mode: no\nI: 2026-10-19 12:00:35.999     COS Invert: no\nI: 2026-10-19 12:00:35.999     Noise Squelch: no\nI: 2026-10-19 12:00:35.999     RF Audio Boost: x1\nI: 2026-10-19 12:00:35.999     Max. Deviation Level: 90.0%\nI: 2026-10-19 12:00:35.999     Mode Hang: 10s\nI: 2026-10-19 12:00:35.999     Ext. Ack: N\nI: 2026-10-19 12:00:35.999     Ext. Audio Boost: x1\nM: 2026-10-19 12:00:35.999 Opening the MMDVM\nI: 2026-10-19 12:00:35.999 Opening UDP port on 46278\nI: 2026-10-19 12:00:38.009 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 12:00:38.010 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 12:00:38.010 Modes: DMR FM\nI: 2026-10-19 12:00:38.071 Display Parameters\nI: 2026-10-19 12:00:38.071     Type: \nW: 2026-10-19 12:00:38.071 No valid display found, disabling\nI: 2026-10-19 12:00:38.071 Opening network connections\nW: 2026-10-19 12:00:38.071 SquelchTailElimMs=5 is below the minimum of 20ms, using the minimum\nI: 2026-10-19 12:00:38.071 FM Network Parameters\nI: 2026-10-19 12:00:38.071     Protocol: USRP\nI: 2026-10-19 12:00:38.071     Gateway Address: 127.0.0.1\nI: 2026-10-19 12:00:38.071     Gateway Port: 44628\nI: 2026-10-19 12:00:38.071     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:38.071     Local Port: 33831\nI: 2026-10-19 12:00:38.071     Pre-Emphasis: yes\nI: 2026-10-19 12:00:38.071     De-Emphasis: yes\nI: 2026-10-19 12:00:38.071     TX Audio Gain: 1.00\nI: 2026-10-19 12:00:38.071     RX Audio Gain: 1.00\nI: 2026-10-19 12:00:38.071     Mode Hang: 3s\nI: 2026-10-19 12:00:38.071     Squelch Tail Elim: yes\nI: 2026-10-19 12:00:38.071     Squelch Tail Elim Delay: 20ms\nM: 2026-10-19 12:00:38.072 Opening FM network connection\nI: 2026-10-19 12:00:38.072 Opening UDP port on 33831\nI: 2026-10-19 12:00:38.072 Starting protocol handlers\nM: 2026-10-19 12:00:38.072 Mode set to Idle\nI: 2026-10-19 12:00:38.072 MMDVMHost-20240207 is running\nM: 2026-10-19 12:00:38.160 Mode set to FM"
+  },
+  {
+    "name": "invalid_high_9999ms",
+    "pass": true,
+    "checks": [
+      {
+        "check": "warning logged for invalid value",
+        "pass": true,
+        "detail": [
+          "W: 2026-10-19 12:00:40.762 SquelchTailElimMs=9999 is above the maximum of 500ms, using the maximum"
+        ]
+      },
+      {
+        "check": "effective value clamped and logged",
+        "pass": true,
+        "detail": "expect 500ms"
+      }
+    ],
+    "metrics": {
+      "rss_kb": 3896
+    },
+    "log_tail": ".762     Gateway Port: 52780\nI: 2026-10-19 12:00:40.762     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:40.762     Local Port: 46058\nI: 2026-10-19 12:00:40.762     Pre-Emphasis: yes\nI: 2026-10-19 12:00:40.762     De-Emphasis: yes\nI: 2026-10-19 12:00:40.762     TX Audio Gain: 1.00\nI: 2026-10-19 12:00:40.762     RX Audio Gain: 1.00\nI: 2026-10-19 12:00:40.762     Mode Hang: 3s\nI: 2026-10-19 12:00:40.762     Squelch Tail Elim: yes\nI: 2026-10-19 12:00:40.762     Squelch Tail Elim Delay: 500ms\nM: 2026-10-19 12:00:40.763 Opening FM network connection\nI: 2026-10-19 12:00:40.763 Opening UDP port on 46058\nI: 2026-10-19 12:00:40.763 Starting protocol handlers\nM: 2026-10-19 12:00:40.763 Mode set to Idle\nI: 2026-10-19 12:00:40.763 MMDVMHost-20240207 is running\nM: 2026-10-19 12:00:40.851 Mode set to FM",
+    "log_full": "I: 2026-10-19 12:00:38.687 This software is for use on amateur radio networks only,\nI: 2026-10-19 12:00:38.687 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 12:00:38.687 commercial networks is strictly prohibited.\nI: 2026-10-19 12:00:38.687 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 12:00:38.687 MMDVMHost-20240207 is starting\nI: 2026-10-19 12:00:38.687 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 12:00:38.687 General Parameters\nI: 2026-10-19 12:00:38.688     Callsign: TEST\nI: 2026-10-19 12:00:38.688     Id: 1234567\nI: 2026-10-19 12:00:38.688     Duplex: no\nI: 2026-10-19 12:00:38.688     Timeout: 180s\nI: 2026-10-19 12:00:38.688     D-Star: disabled\nI: 2026-10-19 12:00:38.688     DMR: disabled\nI: 2026-10-19 12:00:38.688     YSF: disabled\nI: 2026-10-19 12:00:38.688     P25: disabled\nI: 2026-10-19 12:00:38.688     NXDN: disabled\nI: 2026-10-19 12:00:38.688     M17: disabled\nI: 2026-10-19 12:00:38.688     POCSAG: disabled\nI: 2026-10-19 12:00:38.688     FM: enabled\nI: 2026-10-19 12:00:38.688     AX.25: disabled\nI: 2026-10-19 12:00:38.688 Modem Parameters\nI: 2026-10-19 12:00:38.688     Protocol: udp\nI: 2026-10-19 12:00:38.688     Modem Address: 127.0.0.1\nI: 2026-10-19 12:00:38.688     Modem Port: 48140\nI: 2026-10-19 12:00:38.688     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:38.688     Local Port: 33704\nI: 2026-10-19 12:00:38.688     RX Invert: no\nI: 2026-10-19 12:00:38.688     TX Invert: no\nI: 2026-10-19 12:00:38.688     PTT Invert: no\nI: 2026-10-19 12:00:38.688     TX Delay: 100ms\nI: 2026-10-19 12:00:38.688     RX Offset: 0Hz\nI: 2026-10-19 12:00:38.688     TX Offset: 0Hz\nI: 2026-10-19 12:00:38.688     RX DC Offset: 0\nI: 2026-10-19 12:00:38.688     TX DC Offset: 0\nI: 2026-10-19 12:00:38.688     RF Level: 100.0%\nI: 2026-10-19 12:00:38.688     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 12:00:38.688     RX Level: 50.0%\nI: 2026-10-19 12:00:38.688     CW Id TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     D-Star TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     DMR TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     YSF TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     P25 TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     NXDN TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     M17 TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     POCSAG TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     FM TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     AX.25 TX Level: 50.0%\nI: 2026-10-19 12:00:38.688     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 12:00:38.688     Use COS as Lockout: no\nI: 2026-10-19 12:00:38.689 FM Parameters\nI: 2026-10-19 12:00:38.689     Callsign: TEST\nI: 2026-10-19 12:00:38.689     Callsign Speed: 20WPM\nI: 2026-10-19 12:00:38.689     Callsign Frequency: 1000Hz\nI: 2026-10-19 12:00:38.689     Callsign Time: 10mins\nI: 2026-10-19 12:00:38.689     Callsign Holdoff: 1/1\nI: 2026-10-19 12:00:38.689     Callsign High Level: 35.0%\nI: 2026-10-19 12:00:38.689     Callsign Low Level: 15.0%\nI: 2026-10-19 12:00:38.689     Callsign At Start: yes\nI: 2026-10-19 12:00:38.689     Callsign At End: yes\nI: 2026-10-19 12:00:38.689     Callsign At Latch: yes\nI: 2026-10-19 12:00:38.689     RF Ack: K\nI: 2026-10-19 12:00:38.689     Ack Speed: 20WPM\nI: 2026-10-19 12:00:38.689     Ack Frequency: 1750Hz\nI: 2026-10-19 12:00:38.689     Ack Min Time: 5s\nI: 2026-10-19 12:00:38.689     Ack Delay: 1000ms\nI: 2026-10-19 12:00:38.689     Ack Level: 80.0%\nI: 2026-10-19 12:00:38.689     Timeout: 180s\nI: 2026-10-19 12:00:38.689     Timeout Level: 80.0%\nI: 2026-10-19 12:00:38.689     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 12:00:38.689     CTCSS High Threshold: 30\nI: 2026-10-19 12:00:38.689     CTCSS Low Threshold: 20\nI: 2026-10-19 12:00:38.689     CTCSS Level: 2.0%\nI: 2026-10-19 12:00:38.689     Kerchunk Time: 0s\nI: 2026-10-19 12:00:38.689     Hang Time: 7s\nI: 2026-10-19 12:00:38.689     Access Mode: 1\nI: 2026-10-19 12:00:38.689     Link Mode: no\nI: 2026-10-19 12:00:38.689     COS Invert: no\nI: 2026-10-19 12:00:38.689     Noise Squelch: no\nI: 2026-10-19 12:00:38.689     RF Audio Boost: x1\nI: 2026-10-19 12:00:38.689     Max. Deviation Level: 90.0%\nI: 2026-10-19 12:00:38.689     Mode Hang: 10s\nI: 2026-10-19 12:00:38.689     Ext. Ack: N\nI: 2026-10-19 12:00:38.690     Ext. Audio Boost: x1\nM: 2026-10-19 12:00:38.690 Opening the MMDVM\nI: 2026-10-19 12:00:38.690 Opening UDP port on 33704\nI: 2026-10-19 12:00:40.700 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 12:00:40.700 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 12:00:40.700 Modes: DMR FM\nI: 2026-10-19 12:00:40.762 Display Parameters\nI: 2026-10-19 12:00:40.762     Type: \nW: 2026-10-19 12:00:40.762 No valid display found, disabling\nI: 2026-10-19 12:00:40.762 Opening network connections\nW: 2026-10-19 12:00:40.762 SquelchTailElimMs=9999 is above the maximum of 500ms, using the maximum\nI: 2026-10-19 12:00:40.762 FM Network Parameters\nI: 2026-10-19 12:00:40.762     Protocol: USRP\nI: 2026-10-19 12:00:40.762     Gateway Address: 127.0.0.1\nI: 2026-10-19 12:00:40.762     Gateway Port: 52780\nI: 2026-10-19 12:00:40.762     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:40.762     Local Port: 46058\nI: 2026-10-19 12:00:40.762     Pre-Emphasis: yes\nI: 2026-10-19 12:00:40.762     De-Emphasis: yes\nI: 2026-10-19 12:00:40.762     TX Audio Gain: 1.00\nI: 2026-10-19 12:00:40.762     RX Audio Gain: 1.00\nI: 2026-10-19 12:00:40.762     Mode Hang: 3s\nI: 2026-10-19 12:00:40.762     Squelch Tail Elim: yes\nI: 2026-10-19 12:00:40.762     Squelch Tail Elim Delay: 500ms\nM: 2026-10-19 12:00:40.763 Opening FM network connection\nI: 2026-10-19 12:00:40.763 Opening UDP port on 46058\nI: 2026-10-19 12:00:40.763 Starting protocol handlers\nM: 2026-10-19 12:00:40.763 Mode set to Idle\nI: 2026-10-19 12:00:40.763 MMDVMHost-20240207 is running\nM: 2026-10-19 12:00:40.851 Mode set to FM"
+  },
+  {
+    "name": "invalid_text_abc",
+    "pass": true,
+    "checks": [
+      {
+        "check": "warning logged for invalid value",
+        "pass": true,
+        "detail": [
+          "W: 2026-10-19 12:00:43.457 SquelchTailElimMs=0 is below the minimum of 20ms, using the minimum"
+        ]
+      },
+      {
+        "check": "effective value clamped and logged",
+        "pass": true,
+        "detail": "expect 20ms"
+      }
+    ],
+    "metrics": {
+      "rss_kb": 3828
+    },
+    "log_tail": "3.457     Gateway Port: 35064\nI: 2026-10-19 12:00:43.457     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:43.457     Local Port: 42180\nI: 2026-10-19 12:00:43.457     Pre-Emphasis: yes\nI: 2026-10-19 12:00:43.457     De-Emphasis: yes\nI: 2026-10-19 12:00:43.457     TX Audio Gain: 1.00\nI: 2026-10-19 12:00:43.457     RX Audio Gain: 1.00\nI: 2026-10-19 12:00:43.457     Mode Hang: 3s\nI: 2026-10-19 12:00:43.457     Squelch Tail Elim: yes\nI: 2026-10-19 12:00:43.457     Squelch Tail Elim Delay: 20ms\nM: 2026-10-19 12:00:43.458 Opening FM network connection\nI: 2026-10-19 12:00:43.458 Opening UDP port on 42180\nI: 2026-10-19 12:00:43.458 Starting protocol handlers\nM: 2026-10-19 12:00:43.458 Mode set to Idle\nI: 2026-10-19 12:00:43.458 MMDVMHost-20240207 is running\nM: 2026-10-19 12:00:43.546 Mode set to FM",
+    "log_full": "I: 2026-10-19 12:00:41.383 This software is for use on amateur radio networks only,\nI: 2026-10-19 12:00:41.383 it is to be used for educational purposes only. Its use on\nI: 2026-10-19 12:00:41.383 commercial networks is strictly prohibited.\nI: 2026-10-19 12:00:41.383 Copyright(C) 2015-2023 by Jonathan Naylor, G4KLX and others\nI: 2026-10-19 12:00:41.383 MMDVMHost-20240207 is starting\nI: 2026-10-19 12:00:41.383 Built 19:53:42 Oct 19 2026 (GitID #54448dc)\nI: 2026-10-19 12:00:41.383 General Parameters\nI: 2026-10-19 12:00:41.383     Callsign: TEST\nI: 2026-10-19 12:00:41.383     Id: 1234567\nI: 2026-10-19 12:00:41.383     Duplex: no\nI: 2026-10-19 12:00:41.383     Timeout: 180s\nI: 2026-10-19 12:00:41.383     D-Star: disabled\nI: 2026-10-19 12:00:41.383     DMR: disabled\nI: 2026-10-19 12:00:41.383     YSF: disabled\nI: 2026-10-19 12:00:41.383     P25: disabled\nI: 2026-10-19 12:00:41.383     NXDN: disabled\nI: 2026-10-19 12:00:41.383     M17: disabled\nI: 2026-10-19 12:00:41.383     POCSAG: disabled\nI: 2026-10-19 12:00:41.383     FM: enabled\nI: 2026-10-19 12:00:41.383     AX.25: disabled\nI: 2026-10-19 12:00:41.383 Modem Parameters\nI: 2026-10-19 12:00:41.383     Protocol: udp\nI: 2026-10-19 12:00:41.383     Modem Address: 127.0.0.1\nI: 2026-10-19 12:00:41.383     Modem Port: 33692\nI: 2026-10-19 12:00:41.383     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:41.383     Local Port: 60360\nI: 2026-10-19 12:00:41.383     RX Invert: no\nI: 2026-10-19 12:00:41.383     TX Invert: no\nI: 2026-10-19 12:00:41.383     PTT Invert: no\nI: 2026-10-19 12:00:41.383     TX Delay: 100ms\nI: 2026-10-19 12:00:41.383     RX Offset: 0Hz\nI: 2026-10-19 12:00:41.383     TX Offset: 0Hz\nI: 2026-10-19 12:00:41.383     RX DC Offset: 0\nI: 2026-10-19 12:00:41.383     TX DC Offset: 0\nI: 2026-10-19 12:00:41.383     RF Level: 100.0%\nI: 2026-10-19 12:00:41.384     DMR Delay: 0 (0.0ms)\nI: 2026-10-19 12:00:41.384     RX Level: 50.0%\nI: 2026-10-19 12:00:41.384     CW Id TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     D-Star TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     DMR TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     YSF TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     P25 TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     NXDN TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     M17 TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     POCSAG TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     FM TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     AX.25 TX Level: 50.0%\nI: 2026-10-19 12:00:41.384     TX Frequency: 439000000Hz (439000000Hz)\nI: 2026-10-19 12:00:41.384     Use COS as Lockout: no\nI: 2026-10-19 12:00:41.384 FM Parameters\nI: 2026-10-19 12:00:41.384     Callsign: TEST\nI: 2026-10-19 12:00:41.384     Callsign Speed: 20WPM\nI: 2026-10-19 12:00:41.384     Callsign Frequency: 1000Hz\nI: 2026-10-19 12:00:41.384     Callsign Time: 10mins\nI: 2026-10-19 12:00:41.384     Callsign Holdoff: 1/1\nI: 2026-10-19 12:00:41.384     Callsign High Level: 35.0%\nI: 2026-10-19 12:00:41.384     Callsign Low Level: 15.0%\nI: 2026-10-19 12:00:41.384     Callsign At Start: yes\nI: 2026-10-19 12:00:41.384     Callsign At End: yes\nI: 2026-10-19 12:00:41.384     Callsign At Latch: yes\nI: 2026-10-19 12:00:41.384     RF Ack: K\nI: 2026-10-19 12:00:41.384     Ack Speed: 20WPM\nI: 2026-10-19 12:00:41.384     Ack Frequency: 1750Hz\nI: 2026-10-19 12:00:41.384     Ack Min Time: 5s\nI: 2026-10-19 12:00:41.384     Ack Delay: 1000ms\nI: 2026-10-19 12:00:41.385     Ack Level: 80.0%\nI: 2026-10-19 12:00:41.385     Timeout: 180s\nI: 2026-10-19 12:00:41.385     Timeout Level: 80.0%\nI: 2026-10-19 12:00:41.385     CTCSS Frequency: 88.6Hz\nI: 2026-10-19 12:00:41.385     CTCSS High Threshold: 30\nI: 2026-10-19 12:00:41.385     CTCSS Low Threshold: 20\nI: 2026-10-19 12:00:41.385     CTCSS Level: 2.0%\nI: 2026-10-19 12:00:41.385     Kerchunk Time: 0s\nI: 2026-10-19 12:00:41.385     Hang Time: 7s\nI: 2026-10-19 12:00:41.385     Access Mode: 1\nI: 2026-10-19 12:00:41.385     Link Mode: no\nI: 2026-10-19 12:00:41.385     COS Invert: no\nI: 2026-10-19 12:00:41.385     Noise Squelch: no\nI: 2026-10-19 12:00:41.385     RF Audio Boost: x1\nI: 2026-10-19 12:00:41.385     Max. Deviation Level: 90.0%\nI: 2026-10-19 12:00:41.385     Mode Hang: 10s\nI: 2026-10-19 12:00:41.385     Ext. Ack: N\nI: 2026-10-19 12:00:41.385     Ext. Audio Boost: x1\nM: 2026-10-19 12:00:41.385 Opening the MMDVM\nI: 2026-10-19 12:00:41.385 Opening UDP port on 60360\nI: 2026-10-19 12:00:43.396 MMDVM protocol version: 2, description: MMDVM TEST 20240210\nI: 2026-10-19 12:00:43.396 CPU: ST-Micro ARM, UDID: 2C0047001150305030343920\nI: 2026-10-19 12:00:43.396 Modes: DMR FM\nI: 2026-10-19 12:00:43.457 Display Parameters\nI: 2026-10-19 12:00:43.457     Type: \nW: 2026-10-19 12:00:43.457 No valid display found, disabling\nI: 2026-10-19 12:00:43.457 Opening network connections\nW: 2026-10-19 12:00:43.457 SquelchTailElimMs=0 is below the minimum of 20ms, using the minimum\nI: 2026-10-19 12:00:43.457 FM Network Parameters\nI: 2026-10-19 12:00:43.457     Protocol: USRP\nI: 2026-10-19 12:00:43.457     Gateway Address: 127.0.0.1\nI: 2026-10-19 12:00:43.457     Gateway Port: 35064\nI: 2026-10-19 12:00:43.457     Local Address: 127.0.0.1\nI: 2026-10-19 12:00:43.457     Local Port: 42180\nI: 2026-10-19 12:00:43.457     Pre-Emphasis: yes\nI: 2026-10-19 12:00:43.457     De-Emphasis: yes\nI: 2026-10-19 12:00:43.457     TX Audio Gain: 1.00\nI: 2026-10-19 12:00:43.457     RX Audio Gain: 1.00\nI: 2026-10-19 12:00:43.457     Mode Hang: 3s\nI: 2026-10-19 12:00:43.457     Squelch Tail Elim: yes\nI: 2026-10-19 12:00:43.457     Squelch Tail Elim Delay: 20ms\nM: 2026-10-19 12:00:43.458 Opening FM network connection\nI: 2026-10-19 12:00:43.458 Opening UDP port on 42180\nI: 2026-10-19 12:00:43.458 Starting protocol handlers\nM: 2026-10-19 12:00:43.458 Mode set to Idle\nI: 2026-10-19 12:00:43.458 MMDVMHost-20240207 is running\nM: 2026-10-19 12:00:43.546 Mode set to FM"
+  },
+  {
+    "name": "downlink_unaffected",
+    "pass": true,
+    "checks": [
+      {
+        "check": "downlink FM data was produced",
+        "pass": true,
+        "detail": "50 frames"
+      },
+      {
+        "check": "downlink bytes identical with tail elimination on and off",
+        "pass": true,
+        "detail": "on=50 off=50 frames"
+      }
+    ],
+    "metrics": {
+      "frames_on": 50,
+      "frames_off": 50
+    }
+  }
+]

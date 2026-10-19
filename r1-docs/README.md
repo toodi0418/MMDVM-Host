@@ -276,7 +276,10 @@ the custom binary in place with minimal intrusion:
 * A `post-merge` hook in `/usr/local/bin/.git/hooks` runs the same script after
   a successful `git pull`, so the custom binary is back before Pi-Star starts
   the service again at the end of the daily run.
-* `r1-tail-elim-verify.timer` runs the script every 10 minutes as a catch-all.
+* `/etc/cron.d/r1-tail-elim` runs the script every 10 minutes as a catch-all.
+  The systemd timer in `r1-deploy` is kept for reference but cannot be loaded
+  on R1: only about 16 MB is free on `/run`, below the systemd daemon-reload
+  safety buffer, so `systemctl daemon-reload` is refused.
 
 Install them with `r1-deploy/persist-install.sh`.
 

@@ -32,10 +32,16 @@ cat > /usr/local/bin/.git/hooks/post-merge <<"HOOK"
 HOOK
 chmod 755 /usr/local/bin/.git/hooks/post-merge
 
-install -m 644 "$SRC/r1-tail-elim-verify.service" /etc/systemd/system/
-install -m 644 "$SRC/r1-tail-elim-verify.timer" /etc/systemd/system/
-systemctl daemon-reload
-systemctl enable --now r1-tail-elim-verify.timer
+# A cron entry re-checks the binary every 10 minutes. The systemd timer in
+# this directory is kept for reference but cannot be used on R1: the box only
+# has about 16 MB free on /run, less than the systemd daemon-reload safety
+# buffer, so any attempt to load a new unit fails.
+cat > /etc/cron.d/r1-tail-elim <<"CRON"
+# Re-install the R1 squelch tail elimination MMDVMHost binary if anything
+# replaced it. Runs every 10 minutes, does nothing when the hash matches.
+*/10 * * * * root /usr/local/etc/r1-tail-elim/restore-binary.sh >/dev/null 2>&1
+CRON
+chmod 644 /etc/cron.d/r1-tail-elim
 
 mount -o remount,ro /
 
