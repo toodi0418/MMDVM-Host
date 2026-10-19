@@ -91,3 +91,26 @@ Metrics per case:
 
 A case passes only when all of its checks pass. The suite exits 0 only when
 every case passes.
+
+## Passive capture on the live repeater
+
+`r1-test/capture_usrp.py` reads the USRP packets that the running MMDVMHost
+sends to the hub with an AF_PACKET socket. It is completely passive: nothing is
+transmitted, no packet is injected and the service is not restarted.
+
+```bash
+sudo python3 capture_usrp.py 900 /tmp/capture.bin eth0
+python3 analyze_capture.py /tmp/capture.bin
+```
+
+`analyze_capture.py` splits the capture into transmissions (USRP start packet
+to PTT off), decodes the audio and reports per transmission: duration, peak
+RMS, the quiet tail length (the time between the last frame above 12 % of the
+peak and the end of the stream), the RMS of the last 100 ms and its spectral
+flatness (1.0 is noise like, low values are tonal speech).
+
+Comparing the same station with the feature off and on gives an A/B on real
+traffic without keying a transmitter and without injecting anything into the
+hub. It is still not a controlled tail test: the length and content of the real
+squelch tail is whatever the receiver produced, so the result is reported as
+passive observation and not as a controlled RF verification.
