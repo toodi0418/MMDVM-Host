@@ -237,6 +237,28 @@ sudo systemctl restart mmdvmhost
 sudo mount -o remount,ro /
 ```
 
+### 5.2.1 Changing the delay later
+
+Only two things are needed: an INI edit and a service restart. The restart
+briefly interrupts the repeater, so wait for a lull if you want to be polite:
+
+```bash
+# how long since the last mode event, in seconds
+LOG=$(ls -t /var/log/pi-star/MMDVM-*.log | head -1)
+last=$(sudo grep -E "Mode set to (FM|Idle|DMR|D-Star|YSF|P25|NXDN|M17|POCSAG)" "$LOG" | tail -1)
+ts=$(echo "$last" | awk '{print $2" "$3}' | cut -d. -f1)
+echo $(( $(date -u +%s) - $(date -u -d "$ts" +%s) )) seconds idle
+
+# apply once that is above 180
+sudo mount -o remount,rw /
+sudo sed -i 's/^SquelchTailElimMs=.*/SquelchTailElimMs=300/' /etc/mmdvmhost
+sudo systemctl restart mmdvmhost
+sudo mount -o remount,ro /
+```
+
+Both R1 and R2 currently run **300 ms** (2026-10-20 21:29). The value history
+and the measurements that justify it are in the R2 deployment record.
+
 ### 5.3 Verify
 
 ```bash

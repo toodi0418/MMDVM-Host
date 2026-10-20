@@ -91,7 +91,23 @@ A 400 ms delay removes the whole tail for the 280 ms case, leaves 80 ms for the
 
 ## Current state
 
-Service active, `SquelchTailElim=1`, **`SquelchTailElimMs=200`** (400 ms was
-tried and reverted for long term observation), USRP socket `127.0.0.1:34102`
-bound, AGC proxy untouched on `127.0.0.1:32002`, root filesystem back to read
-only.
+Service active, `SquelchTailElim=1`, **`SquelchTailElimMs=300`**, USRP socket
+`127.0.0.1:34102` bound, AGC proxy untouched on `127.0.0.1:32002`, root
+filesystem back to read only.
+
+The same 300 ms value is in use on R1.
+
+### Chronology of the delay value
+
+| Date / time (CST) | Value | Note |
+|---|---|---|
+| 2026-10-19 21:33 | 200 ms | first R2 deployment |
+| 2026-10-19 22:08 | 400 ms | after the tail measurement, verified offline |
+| 2026-10-19 22:13 | 200 ms | reverted at the operator request for observation |
+| 2026-10-20 21:03 | 250 ms | R2, applied after 926 s idle |
+| 2026-10-20 21:12 | 250 ms | R1, applied after a 184 s idle window |
+| 2026-10-20 21:29 | **300 ms** | **both stations, applied directly at the operator request** |
+
+The 250 ms and 300 ms changes need no code change, only an INI edit and a
+service restart, so the value can be tuned at any time from the dashboard or
+the command line.
